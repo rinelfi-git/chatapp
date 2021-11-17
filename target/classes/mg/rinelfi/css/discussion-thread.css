@@ -1,0 +1,48 @@
+.option-btn {
+	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
+	-fx-pref-width: 40px;
+	-fx-pref-height: 40px;
+	-fx-min-width: 40px;
+	-fx-min-height: 40px;
+	-fx-max-width: 40px;
+	-fx-max-height: 40px;
+	-fx-border-color: transparent;
+	-fx-background-color: rgba(0, 0, 0, .3);
+	-fx-cursor: hand;
+}
+
+.option-btn:hover {
+	-fx-background-color: rgba(0, 0, 0, .1);
+}
+
+.search-bar-container {
+	-fx-padding: 10px;
+}
+
+.search-bar {
+	-fx-font-family: Poppins;
+	-fx-font-size: 1.3em;
+	-fx-text-fill: rgba(0, 0, 0, .75);
+	-fx-border-radius: 30px;
+	-fx-background-radius: 30px;
+	-fx-padding: 10px 10px 10px 40px;
+	-fx-focus-color: rgba(0, 0, 0, .2);
+	-fx-faint-focus-color: transparent;
+	-fx-text-box-border: rgba(0, 0, 0, .2);
+	-fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+	-fx-background-image: url("../img/search_30px.png");
+	-fx-background-position: 8px 8px;
+	-fx-background-repeat: no-repeat;
+}
+
+.discussion .username {
+	-fx-font-family: Poppins;
+	-fx-font-size: 1.3em;
+	-fx-font-weight: bold;
+}
+
+.discussion .message {
+	-fx-font-family: Poppins;
+	-fx-font-size: 1.3em;
+}

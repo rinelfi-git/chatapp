@@ -1,0 +1,87 @@
+.bg-primary {
+	-fx-background-color: -primary-color;
+}
+
+.bg-white {
+	-fx-background-color: #fff;
+}
+
+.bg-secondary {
+	-fx-background-color: -secondary-color;
+}
+
+.card {
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+	-fx-background-color: #fff;
+	-fx-padding: 10;
+	-fx-border-color: rgba(0, 0, 0, .1);
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .2), 10, 0, 0, 0);
+}
+
+.overlay {
+	-fx-background-color: rgba(0, 0, 0, .1);
+}
+
+/* text */
+.span {
+	-fx-font-family: Poppins;
+	-fx-text-fill: rgba(0, 0, 0, .7);
+}
+
+.form-label {
+	-fx-font-family: Poppins;
+	-fx-font-size: 1.2em;
+}
+
+.h2 {
+	-fx-font-family: Poppins;
+	-fx-font-size: 2em;
+	-fx-font-weight: bold;
+}
+
+/* buttons */
+.btn {
+	-fx-font-family: Poppins;
+	-fx-font-weight: bold;
+	-fx-background-color: #fff;
+	-fx-background-radius: 5px;
+	-fx-border-radius: 5px;
+	-fx-padding: 10px 25px;
+	-fx-font-size: 1.2em;
+	-fx-border-color: rgba(0, 0, 0, .1);
+	-fx-cursor: hand;
+}
+
+.btn.primary {
+	-fx-background-color: -primary-color;
+	-fx-text-fill: -primary-text-color;
+}
+
+.btn.secondary {
+	-fx-background-color: -secondary-color;
+	-fx-text-fill: -secondary-text-color;
+	-fx-border-color: -primary-light-color;
+}
+
+.floating-button {
+	-fx-background-radius: 50%;
+	-fx-border-radius: 50%;
+	-fx-pref-height: 70;
+	-fx-pref-width: 70;
+	-fx-background-color: -primary-color;
+}
+
+/* form controls */
+.input {
+	-fx-font-family: Poppins;
+	-fx-text-fill: rgba(0, 0, 0, .75);
+	-fx-font-size: 1.3em;
+	-fx-background-radius: 5px;
+	-fx-border-radius: 5px;
+	-fx-padding: 10px;
+	-fx-focus-color: rgba(0, 0, 0, .2);
+	-fx-faint-focus-color: transparent;
+	-fx-text-box-border: rgba(0, 0, 0, .2);
+	-fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="759.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.RegistrationController">
+   <children>
+      <BorderPane layoutX="43.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox maxHeight="546.0" maxWidth="360.0" prefHeight="546.0" prefWidth="360.0" spacing="7.0" styleClass="card" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane>
+                     <center>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/male-profile.png" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets bottom="5.0" />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </center>
+                     <bottom>
+                        <Button mnemonicParsing="false" onAction="#exploreImage" styleClass="btn" text="Sélectionner une photo" BorderPane.alignment="CENTER" />
+                     </bottom>
+                  </BorderPane>
+                  <Label styleClass="form-label" text="Nom" />
+                  <TextField fx:id="firstname" styleClass="input" />
+                  <Label styleClass="form-label" text="Prénoms" />
+                  <TextField fx:id="lastname" styleClass="input" />
+                  <Label styleClass="form-label" text="Nom d'utilisateur" />
+                  <TextField fx:id="username" styleClass="input" />
+                  <Label styleClass="form-label" text="Mot de passe" />
+                  <PasswordField fx:id="password" styleClass="input" />
+                  <Label styleClass="form-label" text="Confirmation du mot de passe" />
+                  <PasswordField fx:id="passwordConfirmation" styleClass="input" />
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#doInscription" text="S'inscrire" HBox.hgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="primary" />
+                           </styleClass>
+                        </Button>
+                        <Label styleClass="span" text="ou" />
+                        <Button mnemonicParsing="false" onAction="#doAuthentication" styleClass="btn" text="Connexion" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../css/variables.css" />
+      <URL value="@../css/main.css" />
+      <URL value="@../css/registration.css" />
+   </stylesheets>
+</AnchorPane>

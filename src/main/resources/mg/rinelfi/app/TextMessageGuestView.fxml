@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="1.7976931348623157E308" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.TextMessageGuestController">
+   <children>
+      <Label fx:id="message" maxWidth="300.0" wrapText="true" />
+   </children>
+   <styleClass>
+      <String fx:value="discussion" />
+      <String fx:value="guest-thread" />
+   </styleClass>
+   <stylesheets>
+      <URL value="@../css/variables.css" />
+      <URL value="@../css/main.css" />
+      <URL value="@../css/text-discussion.css" />
+   </stylesheets>
+</HBox>
