@@ -43,6 +43,7 @@
 
 .discussion:hover {
 	-fx-background-color: rgba(0, 0, 0, .2);
+	-fx-cursor: hand;
 }
 
 .discussion .username {

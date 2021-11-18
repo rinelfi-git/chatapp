@@ -52,6 +52,6 @@
 
 .discussion.me-thread .label {
 	-fx-background-color: -primary-color;
-	-fx-border-color: -primary-color;
+	-fx-border-color: rgba(0, 0, 0, .2);
 	-fx-text-fill: white;
 }
