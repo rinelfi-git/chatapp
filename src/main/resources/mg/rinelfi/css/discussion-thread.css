@@ -36,6 +36,15 @@
 	-fx-background-repeat: no-repeat;
 }
 
+.discussion {
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+}
+
+.discussion:hover {
+	-fx-background-color: rgba(0, 0, 0, .2);
+}
+
 .discussion .username {
 	-fx-font-family: Poppins;
 	-fx-font-size: 1.3em;

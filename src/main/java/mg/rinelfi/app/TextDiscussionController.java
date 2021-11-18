@@ -11,7 +11,7 @@ import mg.rinelfi.Launcher;
 
 import java.io.IOException;
 
-public class TextDiscussionController extends Controller{
+public class TextDiscussionController extends Controller {
     @FXML
     private VBox discussionThread;
     @FXML
