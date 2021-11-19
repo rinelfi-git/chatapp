@@ -21,7 +21,7 @@ public class AuthenticationController extends Controller {
     
     @FXML
     void doConnection(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/DiscussionThreadView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/DiscussionThreadView.fxml"));
         Parent view = loader.load();
         ((Controller) loader.getController()).setStage(this.getStage());
         Scene scene = new Scene(view);
@@ -30,7 +30,7 @@ public class AuthenticationController extends Controller {
     
     @FXML
     void openRegister() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/RegistrationView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/RegistrationView.fxml"));
         Parent view = loader.load();
         ((Controller) loader.getController()).setStage(this.getStage());
         Scene scene = new Scene(view);

@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import mg.rinelfi.Launcher;
 import mg.rinelfi.abstraction.Observable;
 import mg.rinelfi.abstraction.Observer;
 import mg.rinelfi.beans.Discussion;
@@ -26,7 +25,7 @@ public class ContactController extends Controller implements Observable {
         if (MouseButton.SECONDARY == event.getButton()) {
             this.update(this.discussion);
         } else if (MouseButton.PRIMARY == event.getButton()) {
-            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/TextDiscussionView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/TextDiscussionView.fxml"));
             Parent view = loader.load();
             ((Controller) loader.getController()).setStage(this.getStage());
             Scene scene = new Scene(view);
