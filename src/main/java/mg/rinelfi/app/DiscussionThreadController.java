@@ -7,9 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import mg.rinelfi.Launcher;
 import mg.rinelfi.beans.Discussion;
 import mg.rinelfi.jiosocket.client.TCPClient;
 
@@ -31,6 +36,9 @@ public class DiscussionThreadController extends Controller implements Initializa
     public void setStage(Stage stage) {
         super.stage = stage;
         super.stage.setTitle("Rinelfi - chat app");
+        for(int i = 0; i < 12; i++) {
+            this.addDiscussion();
+        }
     }
     
     @Override
@@ -54,7 +62,32 @@ public class DiscussionThreadController extends Controller implements Initializa
         this.socket.connect();
     }
     
-    public void doAddDiscussion() {
+    @FXML
+    public void doOpenSessionOption() {
+        mainSession.toBack();
+        sessionOption.toFront();
+        contactOption.toBack();
+    }
+    
+    @FXML
+    public void doCloseOptions() {
+        mainSession.toFront();
+        sessionOption.toBack();
+        contactOption.toBack();
+    }
+    
+    @FXML
+    public void doDisconnect(MouseEvent event)  throws IOException {
+        if(MouseButton.PRIMARY == event.getButton()) {
+            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/AuthenticationView.fxml"));
+            Parent view = loader.load();
+            ((Controller) loader.getController()).setStage(this.getStage());
+            Scene scene = new Scene(view);
+            this.getStage().setScene(scene);
+        }
+    }
+    
+    private void addDiscussion() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ContactView.fxml"));
             this.discussionThread.add(loader.load());

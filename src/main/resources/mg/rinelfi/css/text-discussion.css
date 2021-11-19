@@ -1,17 +1,3 @@
-.option-btn {
-	-fx-border-radius: 50%;
-	-fx-background-radius: 50%;
-	-fx-pref-width: 40px;
-	-fx-pref-height: 40px;
-	-fx-min-width: 40px;
-	-fx-min-height: 40px;
-	-fx-max-width: 40px;
-	-fx-max-height: 40px;
-	-fx-border-color: transparent;
-	-fx-background-color: rgba(0, 0, 0, .3);
-	-fx-cursor: hand;
-}
-
 .header .label {
 	-fx-text-fill: -primary-text-color;
 }
@@ -21,12 +7,12 @@
 }
 
 .guest {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-weight: normal;
 }
 
 .discussion {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 }
 
 .discussion.guest-thread {

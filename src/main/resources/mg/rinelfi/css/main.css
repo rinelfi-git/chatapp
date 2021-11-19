@@ -19,6 +19,12 @@
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .2), 10, 0, 0, 0);
 }
 
+.card-header {
+	-fx-font-family: Arial, Poppins;
+	-fx-font-size: 1.5em;
+	-fx-font-weight: bold;
+}
+
 .overlay {
 	-fx-background-color: rgba(0, 0, 0, .1);
 }
@@ -81,24 +87,24 @@
 
 /* text */
 .span {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-text-fill: rgba(0, 0, 0, .7);
 }
 
 .form-label {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-size: 1.2em;
 }
 
 .h2 {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-size: 2em;
 	-fx-font-weight: bold;
 }
 
 /* buttons */
 .btn {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-weight: bold;
 	-fx-background-color: #fff;
 	-fx-background-radius: 5px;
@@ -126,11 +132,26 @@
 	-fx-pref-height: 70;
 	-fx-pref-width: 70;
 	-fx-background-color: -primary-color;
+	-fx-cursor: hand;
+}
+
+.option-btn {
+	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
+	-fx-pref-width: 40px;
+	-fx-pref-height: 40px;
+	-fx-min-width: 40px;
+	-fx-min-height: 40px;
+	-fx-max-width: 40px;
+	-fx-max-height: 40px;
+	-fx-border-color: transparent;
+	-fx-background-color: rgba(0, 0, 0, .3);
+	-fx-cursor: hand;
 }
 
 /* form controls */
 .input {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-text-fill: rgba(0, 0, 0, .75);
 	-fx-font-size: 1.3em;
 	-fx-background-radius: 5px;

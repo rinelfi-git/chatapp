@@ -1,17 +1,3 @@
-.option-btn {
-	-fx-border-radius: 50%;
-	-fx-background-radius: 50%;
-	-fx-pref-width: 40px;
-	-fx-pref-height: 40px;
-	-fx-min-width: 40px;
-	-fx-min-height: 40px;
-	-fx-max-width: 40px;
-	-fx-max-height: 40px;
-	-fx-border-color: transparent;
-	-fx-background-color: rgba(0, 0, 0, .3);
-	-fx-cursor: hand;
-}
-
 .option-btn:hover {
 	-fx-background-color: rgba(0, 0, 0, .1);
 }
@@ -21,7 +7,7 @@
 }
 
 .search-bar {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-size: 1.3em;
 	-fx-text-fill: rgba(0, 0, 0, .75);
 	-fx-border-radius: 30px;
@@ -47,12 +33,28 @@
 }
 
 .discussion .username {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-size: 1.3em;
 	-fx-font-weight: bold;
 }
 
 .discussion .message {
-	-fx-font-family: Poppins;
+	-fx-font-family: Arial, Poppins;
 	-fx-font-size: 1.3em;
+}
+
+/* options */
+.option .option-element {
+	-fx-font-family: Arial, Poppins;
+	-fx-font-size: 1.2em;
+	-fx-font-weight: bold;
+}
+
+.option .option-popup-element {
+	-fx-border-radius: 5px;
+	-fx-background-radius: 5px;
+}
+.option .option-popup-element:hover {
+	-fx-cursor: hand;
+	-fx-background-color: rgba(0, 0, 0, .1);
 }

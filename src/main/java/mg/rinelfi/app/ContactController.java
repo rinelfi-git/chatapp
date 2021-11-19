@@ -21,6 +21,7 @@ public class ContactController extends Controller implements Observable {
     @FXML
     private Label username, textMessage;
     
+    @FXML
     public void doOpenDiscussionAction(MouseEvent event) throws IOException {
         if (MouseButton.SECONDARY == event.getButton()) {
             this.update(this.discussion);
