@@ -19,6 +19,11 @@
 			<artifactId>fontawesomefx</artifactId>
 			<version>8.9</version>
 		</dependency>
+		<dependency>
+			<groupId>mg.rinelfi</groupId>
+			<artifactId>TCP</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>

@@ -8,16 +8,23 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import mg.rinelfi.Launcher;
+import mg.rinelfi.abstraction.Observable;
+import mg.rinelfi.abstraction.Observer;
+import mg.rinelfi.beans.Discussion;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ContactController extends Controller {
+public class ContactController extends Controller implements Observable {
+    private List<Observer> observers;
+    private Discussion discussion;
     @FXML
     private Label username, textMessage;
     
     public void doOpenDiscussionAction(MouseEvent event) throws IOException {
         if (MouseButton.SECONDARY == event.getButton()) {
-            System.out.println("popup");
+            this.update(this.discussion);
         } else if (MouseButton.PRIMARY == event.getButton()) {
             FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/TextDiscussionView.fxml"));
             Parent view = loader.load();
@@ -25,5 +32,20 @@ public class ContactController extends Controller {
             Scene scene = new Scene(view);
             this.getStage().setScene(scene);
         }
+    }
+    
+    public void setDiscussion(Discussion discussion) {
+        this.discussion = discussion;
+    }
+    
+    @Override
+    public void addObserver(Observer observer) {
+        if(this.observers == null) this.observers = new ArrayList<>();
+        this.observers.add(observer);
+    }
+    
+    @Override
+    public void update(Object data) {
+        this.observers.forEach(observer -> observer.update(data));
     }
 }

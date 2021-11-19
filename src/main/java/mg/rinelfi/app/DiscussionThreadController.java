@@ -9,12 +9,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import mg.rinelfi.beans.Discussion;
+import mg.rinelfi.jiosocket.client.TCPClient;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DiscussionThreadController extends Controller implements Initializable {
+    TCPClient socket;
+    
     @FXML
     private VBox discussionList;
     private ObservableList<Node> discussionThread;
@@ -29,14 +33,21 @@ public class DiscussionThreadController extends Controller implements Initializa
     public void initialize(URL location, ResourceBundle resources) {
         this.discussionThread = FXCollections.observableArrayList();
         Bindings.bindContentBidirectional(discussionThread, discussionList.getChildren());
-        
+        this.socket = new TCPClient("localhost", 21345);
+        this.socket.onConnection(callback -> {
+            System.out.println("Connection");
+        }).emit("client.server", "down");
+        this.socket.connect();
     }
     
     public void doAddDiscussion() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ContactView.fxml"));
             this.discussionThread.add(loader.load());
-            ((Controller) loader.getController()).setStage(this.getStage());
+            ContactController contact = loader.getController();
+            contact.setStage(this.getStage());
+            contact.setDiscussion(new Discussion());
+            contact.addObserver(discussion -> System.out.println("click droite sur la discussion : " + discussion));
         } catch (IOException e) {
             e.printStackTrace();
         }

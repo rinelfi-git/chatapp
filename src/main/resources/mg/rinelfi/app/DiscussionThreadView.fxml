@@ -348,7 +348,7 @@
                         <String fx:value="search-bar-container" />
                      </styleClass>
                   </AnchorPane>
-                  <AnchorPane VBox.vgrow="ALWAYS">
+                  <AnchorPane style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                      <children>
                         <ScrollPane fx:id="discussionListContainer" fitToWidth="true" hbarPolicy="NEVER" prefHeight="525.0" prefWidth="347.0" styleClass="discussion-scroll-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
