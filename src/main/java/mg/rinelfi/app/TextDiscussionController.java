@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import mg.rinelfi.Launcher;
 
 import java.io.IOException;
@@ -32,5 +33,11 @@ public class TextDiscussionController extends Controller {
         ((TextMessageMeController) loader.getController()).setMessage(this.input.getText());
         this.input.setText("");
         this.discussionThread.getChildren().add(discussion);
+    }
+    
+    @FXML
+    public void doBrowseAttach() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.showOpenDialog(null);
     }
 }

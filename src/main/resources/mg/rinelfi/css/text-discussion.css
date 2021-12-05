@@ -7,12 +7,12 @@
 }
 
 .guest {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-font-weight: normal;
 }
 
 .discussion {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 }
 
 .discussion.guest-thread {

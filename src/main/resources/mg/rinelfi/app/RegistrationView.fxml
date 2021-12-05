@@ -63,6 +63,7 @@
       </BorderPane>
    </children>
    <stylesheets>
+      <URL value="@../css/poppins.css" />
       <URL value="@../css/variables.css" />
       <URL value="@../css/main.css" />
       <URL value="@../css/registration.css" />

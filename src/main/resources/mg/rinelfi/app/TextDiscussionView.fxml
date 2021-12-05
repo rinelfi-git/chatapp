@@ -115,7 +115,19 @@
                         <Tooltip text="Démarrer un appel vidéo" />
                      </tooltip>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="option-btn">
+                  <Button mnemonicParsing="false" onAction="#doBrowseAttach" styleClass="option-btn">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons8-trombone-30.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Attacher un ficher" />
+                     </tooltip>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#doBrowseAttach" styleClass="option-btn">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -149,6 +161,7 @@
       </VBox>
    </children>
    <stylesheets>
+      <URL value="@../css/poppins.css" />
       <URL value="@../css/variables.css" />
       <URL value="@../css/main.css" />
       <URL value="@../css/text-discussion.css" />

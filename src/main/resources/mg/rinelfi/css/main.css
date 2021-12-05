@@ -20,7 +20,7 @@
 }
 
 .card-header {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-font-size: 1.5em;
 	-fx-font-weight: bold;
 }
@@ -87,24 +87,24 @@
 
 /* text */
 .span {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-text-fill: rgba(0, 0, 0, .7);
 }
 
 .form-label {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-font-size: 1.2em;
 }
 
 .h2 {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-font-size: 2em;
 	-fx-font-weight: bold;
 }
 
 /* buttons */
 .btn {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-font-weight: bold;
 	-fx-background-color: #fff;
 	-fx-background-radius: 5px;
@@ -151,7 +151,7 @@
 
 /* form controls */
 .input {
-	-fx-font-family: Arial, Poppins;
+	-fx-font-family: Poppins;
 	-fx-text-fill: rgba(0, 0, 0, .75);
 	-fx-font-size: 1.3em;
 	-fx-background-radius: 5px;
