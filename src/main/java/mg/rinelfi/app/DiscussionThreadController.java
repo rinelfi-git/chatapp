@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import mg.rinelfi.Launcher;
 import mg.rinelfi.beans.Discussion;
+import mg.rinelfi.jiosocket.Events;
 import mg.rinelfi.jiosocket.client.TCPClient;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class DiscussionThreadController extends Controller implements Initializa
     public void setStage(Stage stage) {
         super.stage = stage;
         super.stage.setTitle("Rinelfi - chat app");
-        for(int i = 0; i < 12; i++) {
+        for (int i = 0; i < 12; i++) {
             this.addDiscussion();
         }
     }
@@ -56,7 +57,7 @@ public class DiscussionThreadController extends Controller implements Initializa
          * Initiation of socket use
          */
         this.socket = new TCPClient("localhost", 21345);
-        this.socket.onConnection(callback -> {
+        this.socket.on(Events.CONNECT, callback -> {
             System.out.println("Connection");
         }).emit("client.server", "down");
         this.socket.connect();
@@ -77,8 +78,8 @@ public class DiscussionThreadController extends Controller implements Initializa
     }
     
     @FXML
-    public void doDisconnect(MouseEvent event)  throws IOException {
-        if(MouseButton.PRIMARY == event.getButton()) {
+    public void doDisconnect(MouseEvent event) throws IOException {
+        if (MouseButton.PRIMARY == event.getButton()) {
             FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/AuthenticationView.fxml"));
             Parent view = loader.load();
             ((Controller) loader.getController()).setStage(this.getStage());
