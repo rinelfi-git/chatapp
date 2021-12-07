@@ -14,14 +14,14 @@
 	-fx-background-radius: 10px;
 	-fx-border-radius: 10px;
 	-fx-background-color: #fff;
-	-fx-padding: 10;
+	-fx-padding: 10px;
 	-fx-border-color: rgba(0, 0, 0, .1);
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .2), 10, 0, 0, 0);
 }
 
 .card-header {
-	-fx-font-family: Poppins;
-	-fx-font-size: 1.5em;
+	-fx-font-family: Roboto;
+	-fx-font-size: 18pt;
 	-fx-font-weight: bold;
 }
 
@@ -87,30 +87,30 @@
 
 /* text */
 .span {
-	-fx-font-family: Poppins;
+	-fx-font-family: Roboto;
 	-fx-text-fill: rgba(0, 0, 0, .7);
 }
 
 .form-label {
-	-fx-font-family: Poppins;
-	-fx-font-size: 1.2em;
+	-fx-font-family: Roboto;
+	-fx-font-size: 12pt;
 }
 
 .h2 {
-	-fx-font-family: Poppins;
-	-fx-font-size: 2em;
+	-fx-font-family: Roboto;
+	-fx-font-size: 20pt;
 	-fx-font-weight: bold;
 }
 
 /* buttons */
 .btn {
-	-fx-font-family: Poppins;
+	-fx-font-family: Roboto;
 	-fx-font-weight: bold;
 	-fx-background-color: #fff;
 	-fx-background-radius: 5px;
 	-fx-border-radius: 5px;
 	-fx-padding: 10px 25px;
-	-fx-font-size: 1.2em;
+	-fx-font-size: 13pt;
 	-fx-border-color: rgba(0, 0, 0, .1);
 	-fx-cursor: hand;
 }
@@ -151,9 +151,9 @@
 
 /* form controls */
 .input {
-	-fx-font-family: Poppins;
+	-fx-font-family: Roboto;
 	-fx-text-fill: rgba(0, 0, 0, .75);
-	-fx-font-size: 1.3em;
+	-fx-font-size: 12pt;
 	-fx-background-radius: 5px;
 	-fx-border-radius: 5px;
 	-fx-padding: 10px;

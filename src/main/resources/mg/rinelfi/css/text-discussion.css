@@ -7,12 +7,12 @@
 }
 
 .guest {
-	-fx-font-family: Poppins;
+	-fx-font-family: Roboto;
 	-fx-font-weight: normal;
 }
 
 .discussion {
-	-fx-font-family: Poppins;
+	-fx-font-family: Roboto;
 }
 
 .discussion.guest-thread {
@@ -27,7 +27,7 @@
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
 	-fx-padding: 10px;
-	-fx-font-size: 1.1em;
+	-fx-font-size: 1.3em;
 }
 
 .discussion.guest-thread .label {

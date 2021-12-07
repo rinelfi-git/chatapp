@@ -15,8 +15,9 @@
    </styleClass>
    <stylesheets>
       <URL value="@../css/poppins.css" />
+      <URL value="@../css/roboto.css" />
       <URL value="@../css/variables.css" />
       <URL value="@../css/main.css" />
-      <URL value="@../css/text-discussion.css" />
+      <URL value="@../css/authentication.css" />
    </stylesheets>
 </HBox>
