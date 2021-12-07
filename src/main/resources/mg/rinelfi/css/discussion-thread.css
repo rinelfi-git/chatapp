@@ -28,13 +28,13 @@
 }
 
 .discussion:hover {
-	-fx-background-color: rgba(0, 0, 0, .2);
+	-fx-background-color: rgba(0, 0, 0, .1);
 	-fx-cursor: hand;
 }
 
 .discussion .username {
 	-fx-font-family: Roboto;
-	-fx-font-size: 1.4em;
+	-fx-font-size: 13pt;
 	-fx-font-weight: bold;
 }
 

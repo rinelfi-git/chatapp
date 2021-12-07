@@ -67,6 +67,6 @@
       <URL value="@../css/roboto.css" />
       <URL value="@../css/variables.css" />
       <URL value="@../css/main.css" />
-      <URL value="@../css/authentication.css" />
+      <URL value="@../css/registration.css" />
    </stylesheets>
 </AnchorPane>

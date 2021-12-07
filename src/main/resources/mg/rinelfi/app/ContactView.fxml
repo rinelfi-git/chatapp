@@ -17,7 +17,7 @@
       <URL value="@../css/roboto.css" />
       <URL value="@../css/variables.css" />
       <URL value="@../css/main.css" />
-      <URL value="@../css/authentication.css" />
+      <URL value="@../css/discussion-thread.css" />
    </stylesheets>
    <center>
       <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="321.0" spacing="10.0" BorderPane.alignment="CENTER">

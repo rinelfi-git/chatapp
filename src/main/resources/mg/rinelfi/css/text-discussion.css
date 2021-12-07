@@ -27,7 +27,7 @@
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
 	-fx-padding: 10px;
-	-fx-font-size: 1.3em;
+	-fx-font-size: 12pt;
 }
 
 .discussion.guest-thread .label {
