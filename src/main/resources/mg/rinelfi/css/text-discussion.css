@@ -6,6 +6,10 @@
 	-fx-background-color: rgba(0, 0, 0, .1);
 }
 
+.reaction-overlay {
+	-fx-background-color: rgba(0, 0, 0, .2);
+}
+
 .guest {
 	-fx-font-family: Roboto;
 	-fx-font-weight: normal;
@@ -23,20 +27,39 @@
 	-fx-alignment: top-right;
 }
 
-.discussion .label {
+.discussion .content {
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
 	-fx-padding: 10px;
 	-fx-font-size: 12pt;
 }
 
-.discussion.guest-thread .label {
+.discussion .date {
+	-fx-padding: 12;
+	-fx-text-fill: rgba(0, 0, 0, .6);
+}
+
+.discussion .reacter {
+	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
+	-fx-pref-width: 24;
+	-fx-pref-height: 24;
+	-fx-min-width: 24;
+	-fx-min-height: 24;
+	-fx-max-width: 24;
+	-fx-max-height: 24;
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-cursor: hand;
+}
+
+.discussion.guest-thread .content {
 	-fx-background-color: white;
 	-fx-border-color: rgba(0, 0, 0, .2);
 	-fx-text-fill: black;
 }
 
-.discussion.me-thread .label {
+.discussion.me-thread .content {
 	-fx-background-color: -primary-color;
 	-fx-border-color: rgba(0, 0, 0, .2);
 	-fx-text-fill: white;

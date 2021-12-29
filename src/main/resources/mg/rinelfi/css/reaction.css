@@ -6,10 +6,11 @@
 	-fx-min-width: 35px;
 	-fx-min-height: 35px;
 	-fx-background-radius: 5px;
-	-fx-border²-radius: 5px;
+	-fx-border-radius: 5px;
 	-fx-background-color: transparent;
 }
 
-.react-button:hover {
+.react-button:hover, .react-button.selected {
 	-fx-background-color: rgba(0, 0, 0, .1);
+	-fx-cursor: hand;
 }

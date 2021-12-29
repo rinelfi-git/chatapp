@@ -6,10 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.ReactionController">
+<HBox fx:id="it" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.ReactionController">
    <children>
-      <Button mnemonicParsing="false" styleClass="react-button">
+      <Button mnemonicParsing="false" onAction="#doReactHeart" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
@@ -18,7 +17,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" styleClass="react-button">
+      <Button mnemonicParsing="false" onAction="#doReactLaugh" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
@@ -27,7 +26,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" styleClass="react-button">
+      <Button mnemonicParsing="false" onAction="#doReactAmazed" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
@@ -36,7 +35,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" styleClass="react-button">
+      <Button mnemonicParsing="false" onAction="#doReactSad" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
@@ -45,7 +44,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" styleClass="react-button">
+      <Button mnemonicParsing="false" onAction="#doReactAngry" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
@@ -54,7 +53,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" styleClass="react-button">
+      <Button mnemonicParsing="false" onAction="#doReactNice" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>

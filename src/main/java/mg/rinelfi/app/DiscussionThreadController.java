@@ -60,7 +60,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         this.socket.on(Events.CONNECT, callback -> {
             System.out.println("Connection");
         }).emit("client.server", "down");
-        this.socket.connect();
+        // this.socket.connect();
     }
     
     @FXML
