@@ -19,11 +19,11 @@
 	-fx-font-family: Roboto;
 }
 
-.discussion.guest-thread {
+.discussion .guest-thread {
 	-fx-alignment: top-left;
 }
 
-.discussion.me-thread {
+.discussion .me-thread {
 	-fx-alignment: top-right;
 }
 
@@ -53,13 +53,13 @@
 	-fx-cursor: hand;
 }
 
-.discussion.guest-thread .content {
+.discussion .guest-thread .content {
 	-fx-background-color: white;
 	-fx-border-color: rgba(0, 0, 0, .2);
 	-fx-text-fill: black;
 }
 
-.discussion.me-thread .content {
+.discussion .me-thread .content {
 	-fx-background-color: -primary-color;
 	-fx-border-color: rgba(0, 0, 0, .2);
 	-fx-text-fill: white;

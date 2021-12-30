@@ -3,6 +3,7 @@ package mg.rinelfi.app;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import mg.rinelfi.abstraction.ReactionActionConsumer;
 import mg.rinelfi.abstraction.ReactionRequestListener;
 import mg.rinelfi.abstraction.ReactionRequestConsumer;
 
@@ -38,5 +39,10 @@ public class TextMessageGuestController extends TextMessageController implements
     @Override
     public void trigger(int reaction) {
         this.owners.forEach(reactionRequestConsumer -> reactionRequestConsumer.consume(reaction));
+    }
+    
+    @Override
+    protected void addReaction(String image) {
+    
     }
 }

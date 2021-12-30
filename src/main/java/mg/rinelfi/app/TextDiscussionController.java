@@ -2,6 +2,8 @@ package mg.rinelfi.app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -10,16 +12,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import mg.rinelfi.Launcher;
+import mg.rinelfi.abstraction.ReactionActionConsumer;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class TextDiscussionController extends Controller {
+public class TextDiscussionController extends Controller implements Initializable {
     @FXML
     private BorderPane reactLayer;
     @FXML
     private VBox discussionThread;
     @FXML
     private TextField input;
+    private List<TextMessageController> textMessageControllers;
     
     @FXML
     public void doGoBackAction() throws IOException {
@@ -34,8 +42,8 @@ public class TextDiscussionController extends Controller {
     public void doSendMessage() throws IOException {
         FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/TextMessageMeView.fxml"));
         FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/ReactionView.fxml"));
-        HBox discussion = discussionLoader.load(),
-        reactionPanel = reactionLoader.load();
+        VBox discussion = discussionLoader.load();
+        HBox reactionPanel = reactionLoader.load();
         TextMessageMeController discussionController = discussionLoader.getController();
         discussionController.setMessage(this.input.getText());
         discussionController.setReactionController(reactionLoader.getController());
@@ -46,6 +54,7 @@ public class TextDiscussionController extends Controller {
             reactLayer.setCenter(reactionPanel);
             reactLayer.toFront();
         });
+        this.textMessageControllers.add(discussionController);
         this.input.setText("");
         this.discussionThread.getChildren().add(discussion);
     }
@@ -59,5 +68,14 @@ public class TextDiscussionController extends Controller {
     @FXML
     public void doCloseReactLayer() {
         reactLayer.toBack();
+        for (TextMessageController textMessageController : this.textMessageControllers) {
+            textMessageController.getReactionController().resetOnReact();
+        }
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.textMessageControllers = new ArrayList<>();
+        
     }
 }

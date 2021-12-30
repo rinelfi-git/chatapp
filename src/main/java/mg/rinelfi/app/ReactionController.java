@@ -3,7 +3,6 @@ package mg.rinelfi.app;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import mg.rinelfi.abstraction.ReactionActionConsumer;
 import mg.rinelfi.abstraction.ReactionActionListener;
@@ -18,7 +17,6 @@ public class ReactionController implements Initializable, ReactionActionListener
     private HBox it;
     private int reaction;
     private List<ReactionActionConsumer> consumers;
-    private String[] images;
     
     public void setReaction(int reaction) {
         this.reaction = reaction;
@@ -26,6 +24,10 @@ public class ReactionController implements Initializable, ReactionActionListener
     
     @FXML
     public void doReactHeart() {
+        if(this.reaction >= 0){
+            int temp = this.reaction * (-1) - 1;
+            this.trigger(temp);
+        }
         if (this.reaction == 0) this.reaction = -1;
         else this.reaction = 0;
         this.trigger(this.reaction);
@@ -34,7 +36,11 @@ public class ReactionController implements Initializable, ReactionActionListener
     
     @FXML
     public void doReactLaugh() {
-        if (this.reaction == 1) this.reaction = -1;
+        if(this.reaction >= 0){
+            int temp = this.reaction * (-1) - 1;
+            this.trigger(temp);
+        }
+        if (this.reaction == 1) this.reaction = -2;
         else this.reaction = 1;
         this.trigger(this.reaction);
         this.loadReaction();
@@ -42,7 +48,11 @@ public class ReactionController implements Initializable, ReactionActionListener
     
     @FXML
     public void doReactAmazed() {
-        if (this.reaction == 2) this.reaction = -1;
+        if(this.reaction >= 0){
+            int temp = this.reaction * (-1) - 1;
+            this.trigger(temp);
+        }
+        if (this.reaction == 2) this.reaction = -3;
         else this.reaction = 2;
         this.trigger(this.reaction);
         this.loadReaction();
@@ -50,7 +60,11 @@ public class ReactionController implements Initializable, ReactionActionListener
     
     @FXML
     public void doReactSad() {
-        if (this.reaction == 3) this.reaction = -1;
+        if(this.reaction >= 0){
+            int temp = this.reaction * (-1) - 1;
+            this.trigger(temp);
+        }
+        if (this.reaction == 3) this.reaction = -4;
         else this.reaction = 3;
         this.trigger(this.reaction);
         this.loadReaction();
@@ -58,7 +72,11 @@ public class ReactionController implements Initializable, ReactionActionListener
     
     @FXML
     public void doReactAngry() {
-        if (this.reaction == 4) this.reaction = -1;
+        if(this.reaction >= 0){
+            int temp = this.reaction * (-1) - 1;
+            this.trigger(temp);
+        }
+        if (this.reaction == 4) this.reaction = -5;
         else this.reaction = 4;
         this.trigger(this.reaction);
         this.loadReaction();
@@ -66,7 +84,11 @@ public class ReactionController implements Initializable, ReactionActionListener
     
     @FXML
     public void doReactNice() {
-        if (this.reaction == 5) this.reaction = -1;
+        if(this.reaction >= 0){
+            int temp = this.reaction * (-1) - 1;
+            this.trigger(temp);
+        }
+        if (this.reaction == 5) this.reaction = -6;
         else this.reaction = 5;
         this.trigger(this.reaction);
         this.loadReaction();
@@ -81,23 +103,10 @@ public class ReactionController implements Initializable, ReactionActionListener
         }
     }
     
-    public String getImage() {
-        if (this.reaction >= 0) return this.images[reaction];
-        return null;
-    }
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.reaction = -1;
         this.consumers = new ArrayList<>();
-        this.images = new String[]{
-            "love.png",
-            "laught.png",
-            "amazed.png",
-            "sad.png",
-            "angry.png",
-            "like.png"
-        };
     }
     
     @Override
@@ -106,7 +115,14 @@ public class ReactionController implements Initializable, ReactionActionListener
     }
     
     @Override
+    public void resetOnReact() {
+        this.consumers.clear();
+    }
+    
+    @Override
     public void trigger(int reaction) {
-        this.consumers.forEach(consumer -> consumer.consume(reaction));
+        for (ReactionActionConsumer consumer : this.consumers) {
+            consumer.consume(reaction);
+        }
     }
 }
