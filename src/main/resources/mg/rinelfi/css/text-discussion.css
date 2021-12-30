@@ -39,7 +39,7 @@
 	-fx-text-fill: rgba(0, 0, 0, .6);
 }
 
-.discussion .reacter {
+.discussion .option {
 	-fx-border-radius: 50%;
 	-fx-background-radius: 50%;
 	-fx-pref-width: 24;
@@ -51,6 +51,10 @@
 	-fx-background-color: transparent;
 	-fx-border-color: transparent;
 	-fx-cursor: hand;
+}
+
+.discussion:hover .option {
+	-fx-opacity: 1;
 }
 
 .discussion .guest-thread .content {

@@ -167,11 +167,11 @@
                               <Tooltip text="Démarrer un appel vidéo" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#doBrowseAttach" styleClass="option-btn">
+                        <Button mnemonicParsing="false" styleClass="option-btn">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/icons8-trombone-30.png" />
+                                    <Image url="@../img/message/microphone.png" />
                                  </image>
                               </ImageView>
                            </graphic>

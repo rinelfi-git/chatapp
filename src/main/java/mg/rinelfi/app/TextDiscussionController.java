@@ -60,6 +60,27 @@ public class TextDiscussionController extends Controller implements Initializabl
     }
     
     @FXML
+    public void doSendGuest() throws IOException {
+        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/TextMessageGuestView.fxml"));
+        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/ReactionView.fxml"));
+        VBox discussion = discussionLoader.load();
+        HBox reactionPanel = reactionLoader.load();
+        TextMessageGuestController discussionController = discussionLoader.getController();
+        discussionController.setMessage(this.input.getText());
+        discussionController.setReactionController(reactionLoader.getController());
+        discussionController.setReactionPanel(reactionPanel);
+        discussionController.onReactionRequest(reaction -> {
+            discussionController.getReactionController().setReaction(reaction);
+            discussionController.getReactionController().loadReaction();
+            reactLayer.setCenter(reactionPanel);
+            reactLayer.toFront();
+        });
+        this.textMessageControllers.add(discussionController);
+        this.input.setText("");
+        this.discussionThread.getChildren().add(discussion);
+    }
+    
+    @FXML
     public void doBrowseAttach() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.showOpenDialog(null);
@@ -76,6 +97,5 @@ public class TextDiscussionController extends Controller implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.textMessageControllers = new ArrayList<>();
-        
     }
 }

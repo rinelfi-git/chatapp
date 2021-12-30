@@ -32,6 +32,8 @@ public class DiscussionReactionController {
     public void setCounter(int counter) {
         this.counter = counter;
         this.counterLabel.setText(String.valueOf(this.counter));
+        if(this.counter <= 1) this.counterLabel.setVisible(false);
+        else this.counterLabel.setVisible(true);
     }
     
     public void incrementCounter() {
