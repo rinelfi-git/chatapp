@@ -3,7 +3,6 @@ package mg.rinelfi.app;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -12,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import mg.rinelfi.Launcher;
-import mg.rinelfi.abstraction.ReactionActionConsumer;
 
 import java.io.IOException;
 import java.net.URL;

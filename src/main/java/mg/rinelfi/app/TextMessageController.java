@@ -3,7 +3,6 @@ package mg.rinelfi.app;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import mg.rinelfi.abstraction.ReactionActionListener;
 import mg.rinelfi.abstraction.ReactionRequestConsumer;
 
 import java.io.IOException;
@@ -16,6 +15,7 @@ public abstract class TextMessageController {
     protected HBox reactionPanel;
     protected ReactionController reactionController;
     protected String[] reactionImages;
+    protected boolean sent, received, seen;
     
     public void setReactionPanel(HBox reactionPanel) {
         this.reactionPanel = reactionPanel;
@@ -54,6 +54,42 @@ public abstract class TextMessageController {
                     break;
                 }
             }
+        }
+    }
+    
+    public boolean isSent() {
+        return sent;
+    }
+    
+    public void setSent(boolean sent) {
+        this.sent = sent;
+        if(sent) {
+            this.setReceived(false);
+            this.setSeen(false);
+        }
+    }
+    
+    public boolean isReceived() {
+        return received;
+    }
+    
+    public void setReceived(boolean received) {
+        this.received = received;
+        if(received) {
+            this.setSent(false);
+            this.setSeen(false);
+        }
+    }
+    
+    public boolean isSeen() {
+        return seen;
+    }
+    
+    public void setSeen(boolean seen) {
+        this.seen = seen;
+        if(seen) {
+            this.setReceived(false);
+            this.setSent(false);
         }
     }
 }

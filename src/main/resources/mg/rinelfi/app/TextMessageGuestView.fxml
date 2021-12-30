@@ -15,6 +15,11 @@
       <Label styleClass="date" text="10 Jan 2021 - 03:45" />
       <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="350.0" spacing="10.0" styleClass="guest-thread" VBox.vgrow="ALWAYS">
          <children>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/message/status/sent.png" />
+               </image>
+            </ImageView>
             <Label fx:id="message" maxWidth="300.0" styleClass="content" wrapText="true" />
             <Button fx:id="react" mnemonicParsing="false" onAction="#doReactOn" styleClass="option" visible="false">
                <HBox.margin>
