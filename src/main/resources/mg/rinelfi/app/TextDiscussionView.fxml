@@ -191,7 +191,7 @@
                               <Tooltip text="Attacher un ficher" />
                            </tooltip>
                         </Button>
-                        <TextField fx:id="input" styleClass="input" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="input" onKeyPressed="#doKeyPressed" styleClass="input" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#doSendMessage" styleClass="option-btn">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

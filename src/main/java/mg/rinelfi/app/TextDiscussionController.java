@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -58,24 +59,14 @@ public class TextDiscussionController extends Controller implements Initializabl
     }
     
     @FXML
-    public void doSendGuest() throws IOException {
-        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/TextMessageGuestView.fxml"));
-        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/ReactionView.fxml"));
-        VBox discussion = discussionLoader.load();
-        HBox reactionPanel = reactionLoader.load();
-        TextMessageGuestController discussionController = discussionLoader.getController();
-        discussionController.setMessage(this.input.getText());
-        discussionController.setReactionController(reactionLoader.getController());
-        discussionController.setReactionPanel(reactionPanel);
-        discussionController.onReactionRequest(reaction -> {
-            discussionController.getReactionController().setReaction(reaction);
-            discussionController.getReactionController().loadReaction();
-            reactLayer.setCenter(reactionPanel);
-            reactLayer.toFront();
-        });
-        this.textMessageControllers.add(discussionController);
-        this.input.setText("");
-        this.discussionThread.getChildren().add(discussion);
+    public void doKeyPressed(KeyEvent event) {
+        if (event.getCode().getName().equalsIgnoreCase("enter")) {
+            try {
+                this.doSendMessage();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
     }
     
     @FXML
