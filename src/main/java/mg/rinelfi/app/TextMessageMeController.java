@@ -1,17 +1,14 @@
 package mg.rinelfi.app;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import mg.rinelfi.abstraction.ReactionActionListener;
 import mg.rinelfi.abstraction.ReactionRequestConsumer;
 import mg.rinelfi.abstraction.ReactionRequestListener;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
