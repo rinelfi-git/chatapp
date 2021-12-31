@@ -1,4 +1,4 @@
-package mg.rinelfi.app;
+package mg.rinelfi.app.container;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import mg.rinelfi.Launcher;
+import mg.rinelfi.app.component.message.TextMessageController;
+import mg.rinelfi.app.component.message.TextMessageMeController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +32,7 @@ public class TextDiscussionController extends Controller implements Initializabl
     
     @FXML
     public void doGoBackAction() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/DiscussionThreadView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/DiscussionThreadView.fxml"));
         Parent view = loader.load();
         ((Controller) loader.getController()).setStage(this.getStage());
         Scene scene = new Scene(view);
@@ -39,8 +41,8 @@ public class TextDiscussionController extends Controller implements Initializabl
     
     @FXML
     public void doSendMessage() throws IOException {
-        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/TextMessageMeView.fxml"));
-        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/ReactionView.fxml"));
+        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/message/TextMessageMeView.fxml"));
+        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/message/ReactionView.fxml"));
         VBox discussion = discussionLoader.load();
         HBox reactionPanel = reactionLoader.load();
         TextMessageMeController discussionController = discussionLoader.getController();
@@ -86,5 +88,10 @@ public class TextDiscussionController extends Controller implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.textMessageControllers = new ArrayList<>();
+    }
+    
+    @Override
+    protected void startSocket() {
+    
     }
 }

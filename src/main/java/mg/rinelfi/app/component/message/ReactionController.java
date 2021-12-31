@@ -1,4 +1,4 @@
-package mg.rinelfi.app;
+package mg.rinelfi.app.component.message;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

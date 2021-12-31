@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseEntered="#doMouseEntered" onMouseExited="#doMouseExited" styleClass="discussion" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.TextMessageGuestController">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseEntered="#doMouseEntered" onMouseExited="#doMouseExited" styleClass="discussion" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.component.message.TextMessageGuestController">
    <children>
       <Label styleClass="date" text="10 Jan 2021 - 03:45" />
       <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="350.0" spacing="10.0" styleClass="guest-thread" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/message/status/sent.png" />
+                  <Image url="@../../../img/message/status/sent.png" />
                </image>
             </ImageView>
             <Label fx:id="message" maxWidth="300.0" styleClass="content" wrapText="true" />
@@ -28,7 +28,7 @@
                <graphic>
                   <ImageView fx:id="reactionThumbnail" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/reaction/react-on-it.png" />
+                        <Image url="@../../../img/reaction/react-on-it.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -40,7 +40,7 @@
                <graphic>
                   <ImageView fx:id="reactionThumbnail1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/reaction/reply.png" />
+                        <Image url="@../../../img/reaction/reply.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -52,7 +52,7 @@
                <graphic>
                   <ImageView fx:id="reactionThumbnail11" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/reaction/more.png" />
+                        <Image url="@../../../img/reaction/more.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -65,10 +65,10 @@
       <HBox fx:id="reactionContainer" alignment="CENTER_LEFT" />
    </children>
    <stylesheets>
-      <URL value="@../css/poppins.css" />
-      <URL value="@../css/roboto.css" />
-      <URL value="@../css/variables.css" />
-      <URL value="@../css/main.css" />
-      <URL value="@../css/text-discussion.css" />
+      <URL value="@../../../css/poppins.css" />
+      <URL value="@../../../css/roboto.css" />
+      <URL value="@../../../css/variables.css" />
+      <URL value="@../../../css/main.css" />
+      <URL value="@../../../css/text-discussion.css" />
    </stylesheets>
 </VBox>

@@ -1,4 +1,4 @@
-package mg.rinelfi.app;
+package mg.rinelfi.app.container;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +33,7 @@ public class RegistrationController extends Controller{
     
     @FXML
     void doAuthentication() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/AuthenticationView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/AuthenticationView.fxml"));
         Parent view = loader.load();
         ((Controller) loader.getController()).setStage(this.getStage());
         Scene scene = new Scene(view);
@@ -57,5 +57,10 @@ public class RegistrationController extends Controller{
     public void setStage(Stage stage) {
         super.stage = stage;
         super.stage.setTitle("inscription - chat app");
+    }
+    
+    @Override
+    protected void startSocket() {
+    
     }
 }

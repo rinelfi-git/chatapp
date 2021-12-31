@@ -1,4 +1,4 @@
-package mg.rinelfi.app;
+package mg.rinelfi.app.container;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -15,16 +15,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import mg.rinelfi.Launcher;
+import mg.rinelfi.app.component.discussionthread.ContactController;
 import mg.rinelfi.beans.Discussion;
-import mg.rinelfi.jiosocket.Events;
-import mg.rinelfi.jiosocket.client.TCPClient;
+import mg.rinelfi.jiosocket.SocketEvents;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DiscussionThreadController extends Controller implements Initializable {
-    TCPClient socket;
     @FXML
     private AnchorPane contactOption, sessionOption;
     @FXML
@@ -38,7 +39,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         super.stage = stage;
         super.stage.setTitle("Rinelfi - chat app");
         for (int i = 0; i < 12; i++) {
-            this.addDiscussion();
+            this.addDiscussion("");
         }
     }
     
@@ -52,15 +53,6 @@ public class DiscussionThreadController extends Controller implements Initializa
         mainSession.toFront();
         sessionOption.toBack();
         contactOption.toBack();
-        
-        /**
-         * Initiation of socket use
-         */
-        this.socket = new TCPClient("localhost", 21345);
-        this.socket.on(Events.CONNECT, callback -> {
-            System.out.println("Connection");
-        }).emit("client.server", "down");
-        // this.socket.connect();
     }
     
     @FXML
@@ -80,7 +72,7 @@ public class DiscussionThreadController extends Controller implements Initializa
     @FXML
     public void doDisconnect(MouseEvent event) throws IOException {
         if (MouseButton.PRIMARY == event.getButton()) {
-            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/AuthenticationView.fxml"));
+            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/AuthenticationView.fxml"));
             Parent view = loader.load();
             ((Controller) loader.getController()).setStage(this.getStage());
             Scene scene = new Scene(view);
@@ -88,7 +80,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         }
     }
     
-    private void addDiscussion() {
+    private void addDiscussion(String user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ContactView.fxml"));
             this.discussionThread.add(loader.load());
@@ -103,5 +95,22 @@ public class DiscussionThreadController extends Controller implements Initializa
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void startSocket() {
+        /**
+         * Initiation of socket use
+         */
+        this.getSocket().on(SocketEvents.CONNECT, callback -> {
+            System.out.println("connection");
+            JSONObject decoder = new JSONObject(callback);
+            this.setToken(decoder.get("identifier").toString());
+        }).on(SocketEvents.BROADCAST_IDENTITY, identities -> {
+            JSONObject input = new JSONObject(identities);
+            JSONArray array = input.getJSONArray("identities");
+            for (Object identity : array) {
+                System.out.println(identity);
+            }
+        });
     }
 }

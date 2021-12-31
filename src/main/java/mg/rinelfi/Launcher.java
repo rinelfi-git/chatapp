@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mg.rinelfi.app.Controller;
+import mg.rinelfi.app.container.Controller;
 
 public class Launcher extends Application {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Chat App");
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/AuthenticationView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/AuthenticationView.fxml"));
         Parent parent = loader.load();
         ((Controller)loader.getController()).setStage(primaryStage);
         Scene scene = new Scene(parent);

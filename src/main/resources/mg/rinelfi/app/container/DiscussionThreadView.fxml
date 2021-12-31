@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.DiscussionThreadController">
+<AnchorPane prefHeight="680.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.container.DiscussionThreadController">
    <children>
       <StackPane fx:id="rootStackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,7 +29,7 @@
                            <children>
                               <ImageView fx:id="mainProfileImageView" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" smooth="false" style="-fx-background-radius: 50%; fx-border-radius: 50%;">
                                  <image>
-                                    <Image url="@../img/male-profile.png" />
+                                    <Image url="@../../img/male-profile.png" />
                                  </image>
                               </ImageView>
                               <Label styleClass="h2" text="Discussion" textFill="WHITE">
@@ -50,7 +50,7 @@
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/icons8-plus-30.png" />
+                                          <Image url="@../../img/icons8-plus-30.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -98,7 +98,7 @@
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/icons8-nouveau-message-70.png" />
+                                    <Image url="@../../img/icons8-nouveau-message-70.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -121,7 +121,7 @@
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/delete_30px.png" />
+                                          <Image url="@../../img/delete_30px.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -256,7 +256,7 @@
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/delete_30px.png" />
+                                          <Image url="@../../img/delete_30px.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -387,10 +387,10 @@
       </StackPane>
    </children>
    <stylesheets>
-      <URL value="@../css/poppins.css" />
-      <URL value="@../css/roboto.css" />
-      <URL value="@../css/variables.css" />
-      <URL value="@../css/main.css" />
-      <URL value="@../css/discussion-thread.css" />
+      <URL value="@../../css/poppins.css" />
+      <URL value="@../../css/roboto.css" />
+      <URL value="@../../css/variables.css" />
+      <URL value="@../../css/main.css" />
+      <URL value="@../../css/discussion-thread.css" />
    </stylesheets>
 </AnchorPane>

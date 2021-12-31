@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.TextDiscussionController">
+<AnchorPane prefHeight="680.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.container.TextDiscussionController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,7 +29,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                                  <image>
-                                    <Image url="@../img/reaction/love.png" />
+                                    <Image url="@../../img/reaction/love.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -38,7 +38,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                                  <image>
-                                    <Image url="@../img/reaction/laught.png" />
+                                    <Image url="@../../img/reaction/laught.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -47,7 +47,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                                  <image>
-                                    <Image url="@../img/reaction/amazed.png" />
+                                    <Image url="@../../img/reaction/amazed.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -56,7 +56,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                                  <image>
-                                    <Image url="@../img/reaction/sad.png" />
+                                    <Image url="@../../img/reaction/sad.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -65,7 +65,7 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                                  <image>
-                                    <Image url="@../img/reaction/angry.png" />
+                                    <Image url="@../../img/reaction/angry.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -74,18 +74,18 @@
                            <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                                  <image>
-                                    <Image url="@../img/reaction/like.png" />
+                                    <Image url="@../../img/reaction/like.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
                      </children>
                      <stylesheets>
-                        <URL value="@../css/poppins.css" />
-                        <URL value="@../css/roboto.css" />
-                        <URL value="@../css/variables.css" />
-                        <URL value="@../css/main.css" />
-                        <URL value="@../css/reaction.css" />
+                        <URL value="@../../css/poppins.css" />
+                        <URL value="@../../css/roboto.css" />
+                        <URL value="@../../css/variables.css" />
+                        <URL value="@../../css/main.css" />
+                        <URL value="@../../css/reaction.css" />
                      </stylesheets>
                   </HBox>
                </center>
@@ -103,14 +103,14 @@
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/icons8-left-arrow-30.png" />
+                                          <Image url="@../../img/icons8-left-arrow-30.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
                               <ImageView fx:id="mainProfileImageView" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" smooth="false" style="-fx-background-radius: 50%; fx-border-radius: 50%;">
                                  <image>
-                                    <Image url="@../img/male-profile.png" />
+                                    <Image url="@../../img/male-profile.png" />
                                  </image>
                               </ImageView>
                               <BorderPane>
@@ -159,7 +159,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/icons8-appel-video-30.png" />
+                                    <Image url="@../../img/icons8-appel-video-30.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -171,7 +171,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/message/microphone.png" />
+                                    <Image url="@../../img/message/microphone.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -183,7 +183,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/icons8-trombone-30.png" />
+                                    <Image url="@../../img/icons8-trombone-30.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -196,7 +196,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/icons8-envoi-de-courriel-30.png" />
+                                    <Image url="@../../img/icons8-envoi-de-courriel-30.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -215,10 +215,10 @@
       </StackPane>
    </children>
    <stylesheets>
-      <URL value="@../css/poppins.css" />
-      <URL value="@../css/roboto.css" />
-      <URL value="@../css/variables.css" />
-      <URL value="@../css/main.css" />
-      <URL value="@../css/text-discussion.css" />
+      <URL value="@../../css/poppins.css" />
+      <URL value="@../../css/roboto.css" />
+      <URL value="@../../css/variables.css" />
+      <URL value="@../../css/main.css" />
+      <URL value="@../../css/text-discussion.css" />
    </stylesheets>
 </AnchorPane>

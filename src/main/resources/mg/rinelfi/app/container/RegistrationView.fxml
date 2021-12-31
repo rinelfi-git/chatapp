@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="759.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.RegistrationController">
+<AnchorPane prefHeight="759.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.container.RegistrationController">
    <children>
       <BorderPane layoutX="43.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -24,7 +24,7 @@
                      <center>
                         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/male-profile.png" />
+                              <Image url="@../../img/male-profile.png" />
                            </image>
                            <BorderPane.margin>
                               <Insets bottom="5.0" />
@@ -63,10 +63,10 @@
       </BorderPane>
    </children>
    <stylesheets>
-      <URL value="@../css/poppins.css" />
-      <URL value="@../css/roboto.css" />
-      <URL value="@../css/variables.css" />
-      <URL value="@../css/main.css" />
-      <URL value="@../css/registration.css" />
+      <URL value="@../../css/poppins.css" />
+      <URL value="@../../css/roboto.css" />
+      <URL value="@../../css/variables.css" />
+      <URL value="@../../css/main.css" />
+      <URL value="@../../css/registration.css" />
    </stylesheets>
 </AnchorPane>

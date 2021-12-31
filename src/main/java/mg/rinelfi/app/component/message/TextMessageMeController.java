@@ -1,4 +1,4 @@
-package mg.rinelfi.app;
+package mg.rinelfi.app.component.message;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TextMessageGuestController extends TextMessageController implements Initializable, ReactionRequestListener {
+public class TextMessageMeController extends TextMessageController implements Initializable, ReactionRequestListener {
     @FXML
     private Label message;
     @FXML
@@ -48,7 +48,7 @@ public class TextMessageGuestController extends TextMessageController implements
             if (this.myReaction >= 0) {
                 String image = "/mg/rinelfi/img/reaction/" + this.reactionImages[reaction];
                 boolean alreadyExists = false;
-                for (DiscussionReactionController consumer : this.reactions) {
+                for (MessageReactionController consumer : this.reactions) {
                     if (consumer.getReaction().equals(image)) {
                         alreadyExists = true;
                         consumer.incrementCounter();

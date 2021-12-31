@@ -1,4 +1,4 @@
-package mg.rinelfi.app;
+package mg.rinelfi.app.component.message;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class TextMessageController {
     protected int myReaction;
     protected List<ReactionRequestConsumer> owners;
-    protected List<DiscussionReactionController> reactions;
+    protected List<MessageReactionController> reactions;
     protected HBox reactionPanel;
     protected ReactionController reactionController;
     protected String[] reactionImages;
@@ -31,9 +31,9 @@ public abstract class TextMessageController {
     
     protected void addReaction(HBox reactionContainer, String image) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/DiscussionReactionView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/component/message/MessageReactionView.fxml"));
             AnchorPane pane = loader.load();
-            DiscussionReactionController controller = loader.getController();
+            MessageReactionController controller = loader.getController();
             controller.setReaction(image);
             controller.setCounter(1);
             reactionContainer.getChildren().add(0, pane);
@@ -45,7 +45,7 @@ public abstract class TextMessageController {
     
     protected void removeReaction(HBox reactionContainer, int reaction) {
         String image = "/mg/rinelfi/img/reaction/" + this.reactionImages[Math.abs(reaction) - 1];
-        for (DiscussionReactionController consumer : this.reactions) {
+        for (MessageReactionController consumer : this.reactions) {
             if (consumer.getReaction().equals(image)) {
                 consumer.decrementCounter();
                 if (consumer.getCounter() == 0) {

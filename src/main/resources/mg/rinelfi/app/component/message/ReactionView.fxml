@@ -6,13 +6,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="it" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.ReactionController">
+<HBox fx:id="it" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.component.message.ReactionController">
    <children>
       <Button mnemonicParsing="false" onAction="#doReactHeart" styleClass="react-button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
-                  <Image url="@../img/reaction/love.png" />
+                  <Image url="@../../../img/reaction/love.png" />
                </image>
             </ImageView>
          </graphic>
@@ -21,7 +21,7 @@
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
-                  <Image url="@../img/reaction/laught.png" />
+                  <Image url="@../../../img/reaction/laught.png" />
                </image>
             </ImageView>
          </graphic>
@@ -30,7 +30,7 @@
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
-                  <Image url="@../img/reaction/amazed.png" />
+                  <Image url="@../../../img/reaction/amazed.png" />
                </image>
             </ImageView>
          </graphic>
@@ -39,7 +39,7 @@
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
-                  <Image url="@../img/reaction/sad.png" />
+                  <Image url="@../../../img/reaction/sad.png" />
                </image>
             </ImageView>
          </graphic>
@@ -48,7 +48,7 @@
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
-                  <Image url="@../img/reaction/angry.png" />
+                  <Image url="@../../../img/reaction/angry.png" />
                </image>
             </ImageView>
          </graphic>
@@ -57,17 +57,17 @@
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                <image>
-                  <Image url="@../img/reaction/like.png" />
+                  <Image url="@../../../img/reaction/like.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
    </children>
    <stylesheets>
-      <URL value="@../css/poppins.css" />
-      <URL value="@../css/roboto.css" />
-      <URL value="@../css/variables.css" />
-      <URL value="@../css/main.css" />
-      <URL value="@../css/reaction.css" />
+      <URL value="@../../../css/poppins.css" />
+      <URL value="@../../../css/roboto.css" />
+      <URL value="@../../../css/variables.css" />
+      <URL value="@../../../css/main.css" />
+      <URL value="@../../../css/reaction.css" />
    </stylesheets>
 </HBox>
