@@ -1,12 +1,12 @@
 package mg.rinelfi.app.container;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mg.rinelfi.Launcher;
@@ -49,8 +49,15 @@ public class RegistrationController extends Controller{
     }
     
     @FXML
-    void doInscription(ActionEvent event) {
+    void doRegister() {
     
+    }
+    
+    @FXML
+    public void doKeyPressed(KeyEvent event) {
+        if (event.getCode().getName().equalsIgnoreCase("enter")) {
+            this.doRegister();
+        }
     }
     
     @Override

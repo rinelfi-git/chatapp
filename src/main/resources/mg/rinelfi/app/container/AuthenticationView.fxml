@@ -23,9 +23,9 @@
                      </center>
                   </BorderPane>
                   <Label styleClass="form-label" text="Nom d'utilisateur" />
-                  <TextField fx:id="username" styleClass="input" />
+                  <TextField fx:id="username" onKeyPressed="#doKeyPressed" styleClass="input" />
                   <Label styleClass="form-label" text="Mot de passe" />
-                  <PasswordField fx:id="password" styleClass="input" />
+                  <PasswordField fx:id="password" onKeyPressed="#doKeyPressed" styleClass="input" />
                   <BorderPane>
                      <center>
                         <Button mnemonicParsing="false" onAction="#doConnection" text="Connexion">

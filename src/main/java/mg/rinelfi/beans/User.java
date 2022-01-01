@@ -2,7 +2,7 @@ package mg.rinelfi.beans;
 
 public class User {
     private int id;
-    private String username;
+    private String username, firstname, lastname;
     
     public int getId() {
         return id;
