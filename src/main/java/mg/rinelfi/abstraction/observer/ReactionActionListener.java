@@ -1,4 +1,4 @@
-package mg.rinelfi.abstraction;
+package mg.rinelfi.abstraction.observer;
 
 public interface ReactionActionListener {
     void onReact(ReactionActionConsumer consumer);

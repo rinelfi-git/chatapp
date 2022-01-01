@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import mg.rinelfi.abstraction.ReactionActionConsumer;
-import mg.rinelfi.abstraction.ReactionActionListener;
+import mg.rinelfi.abstraction.observer.ReactionActionConsumer;
+import mg.rinelfi.abstraction.observer.ReactionActionListener;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -122,7 +122,7 @@ public class ReactionController implements Initializable, ReactionActionListener
     @Override
     public void trigger(int reaction) {
         for (ReactionActionConsumer consumer : this.consumers) {
-            consumer.consume(reaction);
+            consumer.consumeReactionAction(reaction);
         }
     }
 }

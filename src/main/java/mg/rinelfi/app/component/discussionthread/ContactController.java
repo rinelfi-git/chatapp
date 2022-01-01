@@ -1,57 +1,62 @@
 package mg.rinelfi.app.component.discussionthread;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import mg.rinelfi.abstraction.Observable;
-import mg.rinelfi.abstraction.Observer;
-import mg.rinelfi.app.container.Controller;
+import mg.rinelfi.abstraction.observer.ContactLeftClickConsumer;
+import mg.rinelfi.abstraction.observer.ContactLeftClickListener;
+import mg.rinelfi.abstraction.observer.ContactRightClickConsumer;
+import mg.rinelfi.abstraction.observer.ContactRightClickListener;
 import mg.rinelfi.beans.Discussion;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ContactController extends Controller implements Observable {
-    private List<Observer> observers;
+public class ContactController implements ContactRightClickListener, ContactLeftClickListener {
     private Discussion discussion;
     @FXML
     private Label username, textMessage;
+    private ContactLeftClickConsumer leftClickConsumer;
+    private ContactRightClickConsumer rightClickConsumers;
     
     @FXML
     public void doOpenDiscussionAction(MouseEvent event) throws IOException {
         if (MouseButton.SECONDARY == event.getButton()) {
-            this.update(this.discussion);
+            this.triggerContactRightClick(this.discussion);
         } else if (MouseButton.PRIMARY == event.getButton()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/container/TextDiscussionView.fxml"));
-            Parent view = loader.load();
-            ((Controller) loader.getController()).setStage(this.getStage());
-            Scene scene = new Scene(view);
-            this.getStage().setScene(scene);
+            this.triggerContaLeftClick(this.discussion);
         }
     }
     
     public void setDiscussion(Discussion discussion) {
         this.discussion = discussion;
+        this.update();
+    }
+    
+    public Discussion getDiscussion() {return this.discussion;}
+    
+    @Override
+    public void onContactRightClick(ContactRightClickConsumer consumer) {
+        this.rightClickConsumers = consumer;
     }
     
     @Override
-    public void addObserver(Observer observer) {
-        if(this.observers == null) this.observers = new ArrayList<>();
-        this.observers.add(observer);
+    public void triggerContactRightClick(Discussion data) {
+        this.rightClickConsumers.consumeContactRightClick(data);
     }
     
     @Override
-    public void update(Object data) {
-        this.observers.forEach(observer -> observer.update(data));
+    public void onContactLeftClick(ContactLeftClickConsumer consumer) {
+        this.leftClickConsumer = consumer;
     }
     
     @Override
-    protected void startSocket() {
+    public void triggerContaLeftClick(Discussion data) {
+        this.leftClickConsumer.consumeContactLeftClick(data);
+    }
     
+    public void update() {
+        this.username.setText(discussion.getUser().getUsername());
+        this.textMessage.setText(this.discussion.getMessage());
     }
 }

@@ -55,9 +55,9 @@
                </tooltip>
             </Button>
             <Label fx:id="message" maxWidth="300.0" styleClass="content" wrapText="true" />
-            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="messageStatusView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../img/message/status/received.png" />
+                  <Image url="@../../../img/message/status/sent.png" />
                </image>
             </ImageView>
          </children>

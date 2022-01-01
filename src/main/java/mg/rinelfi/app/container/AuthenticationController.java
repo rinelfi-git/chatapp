@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import mg.rinelfi.beans.User;
 import mg.rinelfi.jiosocket.SocketEvents;
 import mg.rinelfi.jiosocket.client.TCPClient;
 import org.json.JSONObject;
@@ -27,12 +28,16 @@ public class AuthenticationController extends Controller implements Initializabl
     @FXML
     void doConnection(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/container/DiscussionThreadView.fxml"));
-        Parent view = loader.load();
-        Controller controller = loader.getController();
-        controller.setStage(this.getStage());
-        controller.setSocket(this.getSocket());
-        controller.startSocket();
-        Scene scene = new Scene(view);
+        Parent discussionThreadView = loader.load();
+        DiscussionThreadController discussionThreadController = loader.getController();
+        discussionThreadController.setUser(new User());
+        discussionThreadController.getUser().setUsername(username.getText());
+        discussionThreadController.setStage(this.getStage());
+        discussionThreadController.setSocket(this.getSocket());
+        discussionThreadController.setToken(this.getToken());
+        discussionThreadController.startSocket();
+        
+        Scene scene = new Scene(discussionThreadView);
         this.getStage().setScene(scene);
         this.getSocket().connect();
     }
@@ -53,16 +58,16 @@ public class AuthenticationController extends Controller implements Initializabl
     }
     
     @Override
-    protected void startSocket() {
+    public void startSocket() {
         this.getSocket().on(SocketEvents.CONNECT, callback -> {
             JSONObject decoder = new JSONObject(callback);
             this.setToken(decoder.get("identifier").toString());
-            System.out.println(this.getToken());
         });
     }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(this.socket != null) this.socket = null;
         this.setSocket(new TCPClient("localhost", 2046));
     }
 }

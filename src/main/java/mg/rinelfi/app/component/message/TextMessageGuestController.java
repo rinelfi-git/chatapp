@@ -4,10 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import mg.rinelfi.abstraction.ReactionActionListener;
-import mg.rinelfi.abstraction.ReactionRequestConsumer;
-import mg.rinelfi.abstraction.ReactionRequestListener;
+import mg.rinelfi.abstraction.observer.ReactionActionListener;
+import mg.rinelfi.abstraction.observer.ReactionRequestConsumer;
+import mg.rinelfi.abstraction.observer.ReactionRequestListener;
+import mg.rinelfi.app.container.TextDiscussionController;
 
 import java.net.URL;
 import java.util.ArrayList;

@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import mg.rinelfi.abstraction.ReactionActionListener;
-import mg.rinelfi.abstraction.ReactionRequestConsumer;
-import mg.rinelfi.abstraction.ReactionRequestListener;
+import mg.rinelfi.abstraction.observer.ReactionActionListener;
+import mg.rinelfi.abstraction.observer.ReactionRequestConsumer;
+import mg.rinelfi.abstraction.observer.ReactionRequestListener;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,6 +22,15 @@ public class TextMessageMeController extends TextMessageController implements In
     private HBox reactionContainer;
     @FXML
     private Button more, reply, react;
+    @FXML
+    private ImageView messageStatusView;
+    
+    private static final String[] messageStatusImages = new String[]{
+        "/mg/rinelfi/img/message/status/sent.png",
+        "/mg/rinelfi/img/message/status/received.png",
+        "/mg/rinelfi/img/message/status/seen.png"
+    };
+    protected boolean sent, received, seen;
     
     public void setMessage(String string) {
         this.message.setText(string);
@@ -38,6 +49,7 @@ public class TextMessageMeController extends TextMessageController implements In
             "angry.png",
             "like.png"
         };
+        this.messageStatusView.setVisible(false);
     }
     
     @FXML
@@ -81,5 +93,51 @@ public class TextMessageMeController extends TextMessageController implements In
         this.more.setVisible(false);
         this.reply.setVisible(false);
         this.react.setVisible(false);
+    }
+    
+    public boolean isSent() {
+        return sent;
+    }
+    
+    public boolean isReceived() {
+        return received;
+    }
+    
+    public boolean isSeen() {
+        return seen;
+    }
+    
+    public void setSent(boolean sent) {
+        this.sent = sent;
+        if (sent) {
+            this.setReceived(false);
+            this.setSeen(false);
+            this.messageStatusView.setImage(new Image(getClass().getResourceAsStream(this.messageStatusImages[0])));
+            this.messageStatusView.setVisible(true);
+        }
+    }
+    
+    public void setReceived(boolean received) {
+        this.received = received;
+        if (received) {
+            this.setSent(false);
+            this.setSeen(false);
+            this.messageStatusView.setImage(new Image(getClass().getResourceAsStream(this.messageStatusImages[1])));
+            this.messageStatusView.setVisible(true);
+        }
+    }
+    
+    public void setSeen(boolean seen) {
+        this.seen = seen;
+        if (seen) {
+            this.setReceived(false);
+            this.setSent(false);
+            this.messageStatusView.setImage(new Image(getClass().getResourceAsStream(this.messageStatusImages[2])));
+            this.messageStatusView.setVisible(true);
+        }
+    }
+    
+    public ImageView getMessageStatusView() {
+        return messageStatusView;
     }
 }

@@ -60,7 +60,7 @@ public class RegistrationController extends Controller{
     }
     
     @Override
-    protected void startSocket() {
+    public void startSocket() {
     
     }
 }

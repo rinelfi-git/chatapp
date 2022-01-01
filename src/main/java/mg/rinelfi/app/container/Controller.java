@@ -1,11 +1,13 @@
 package mg.rinelfi.app.container;
 
 import javafx.stage.Stage;
+import mg.rinelfi.beans.User;
 import mg.rinelfi.jiosocket.client.TCPClient;
 
 public abstract class Controller {
-    private TCPClient socket;
+    protected TCPClient socket;
     protected String token;
+    protected User user;
     protected Stage stage;
     
     public Stage getStage() {
@@ -32,5 +34,13 @@ public abstract class Controller {
         this.socket = socket;
     }
     
-    protected abstract void startSocket();
+    public User getUser() {
+        return user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public abstract void startSocket();
 }
