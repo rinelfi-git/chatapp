@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -32,8 +33,13 @@ public class TextDiscussionController extends Controller implements Initializabl
     private VBox discussionThread;
     @FXML
     private TextField input;
+    @FXML
+    private Label typingIndicator;
     private List<TextMessageController> textMessageControllers;
     private List<String> guests;
+    private boolean someoneTyping;
+    private int typingTimeout;
+    private Thread typingThread;
     
     public List<String> getGuests() {
         return guests;
@@ -81,6 +87,7 @@ public class TextDiscussionController extends Controller implements Initializabl
         JSONObject json = new JSONObject();
         json.put("sender", this.getToken()).put("target", this.guests.get(0)).put("message", message);
         this.getSocket().emit("message", json.toString());
+        this.typingTimeout = 0;
     }
     
     private void doReceiveMessage(final String message) {
@@ -117,7 +124,20 @@ public class TextDiscussionController extends Controller implements Initializabl
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
+        } else {
+            if (!this.someoneTyping) {
+                System.out.println("not typing yet");
+                this.someoneTyping = true;
+                JSONObject json = new JSONObject();
+                json.put("target", this.guests.get(0)).put("sender", this.token);
+                this.socket.emit("typing on", json.toString());
+            }
         }
+    }
+    
+    public void doKeyUp() {
+        this.typingTimeout = 2000;
+        checkTyping();
     }
     
     @FXML
@@ -138,6 +158,7 @@ public class TextDiscussionController extends Controller implements Initializabl
     public void initialize(URL location, ResourceBundle resources) {
         this.textMessageControllers = new ArrayList<>();
         this.guests = new ArrayList<>();
+        this.someoneTyping = false;
     }
     
     @Override
@@ -155,9 +176,48 @@ public class TextDiscussionController extends Controller implements Initializabl
                 if (this.guests.contains(sender)) {
                     Platform.runLater(() -> doReceiveMessage(message));
                 }
+            }).on("typing on", data -> {
+                JSONObject object = new JSONObject(data);
+                String sender = object.getString("sender");
+                System.out.println("typing detected");
+                if (this.guests.contains(sender)) {
+                    Platform.runLater(() -> {
+                        this.typingIndicator.setText(String.format("%s is typing", sender));
+                        this.typingIndicator.setVisible(true);
+                    });
+                }
+            }).on("typing off", data -> {
+                JSONObject object = new JSONObject(data);
+                String sender = object.getString("sender");
+                if (this.guests.contains(sender)) {
+                    Platform.runLater(() -> {
+                        this.typingIndicator.setText("");
+                        this.typingIndicator.setVisible(false);
+                    });
+                }
             }).on("sent", data -> setMessageSent())
             .on("received", data -> setMessageReceived())
             .on("seen", data -> setMessageSeen());
+    }
+    
+    private void checkTyping() {
+        if (this.typingThread == null || !this.typingThread.isAlive()) {
+            this.typingThread = new Thread(() -> {
+                while ((this.typingTimeout -= 100) >= 0) {
+                    System.out.println(this.typingTimeout);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                this.someoneTyping = false;
+                JSONObject json = new JSONObject();
+                json.put("target", this.guests.get(0)).put("sender", this.token);
+                this.socket.emit("typing off", json.toString());
+            });
+            this.typingThread.start();
+        }
     }
     
     public void sendMessageSeen() {
@@ -181,7 +241,7 @@ public class TextDiscussionController extends Controller implements Initializabl
         final int size = this.textMessageControllers.size();
         for (int i = 0; i < size - 1; i++) {
             TextMessageController textMessageController = this.textMessageControllers.get(i);
-            if(textMessageController instanceof TextMessageMeController) {
+            if (textMessageController instanceof TextMessageMeController) {
                 ((TextMessageMeController) textMessageController).getMessageStatusView().setVisible(false);
             }
         }
