@@ -116,6 +116,7 @@ public class DiscussionThreadController extends Controller implements Initializa
                     textDiscussionController.setStage(this.getStage());
                     textDiscussionController.setSocket(this.getSocket());
                     textDiscussionController.setToken(this.getToken());
+                    textDiscussionController.getConnectedUsername().setText(data.getUser().getUsername());
                     textDiscussionController.startSocket();
                     textDiscussionController.sendMessageSeen();
                     

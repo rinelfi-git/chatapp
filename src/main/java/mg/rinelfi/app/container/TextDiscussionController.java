@@ -34,7 +34,7 @@ public class TextDiscussionController extends Controller implements Initializabl
     @FXML
     private TextField input;
     @FXML
-    private Label typingIndicator;
+    private Label typingIndicator, connectedUsername;
     private List<TextMessageController> textMessageControllers;
     private List<String> guests;
     private boolean someoneTyping;
@@ -44,6 +44,8 @@ public class TextDiscussionController extends Controller implements Initializabl
     public List<String> getGuests() {
         return guests;
     }
+    
+    public Label getConnectedUsername() {return this.connectedUsername;}
     
     @FXML
     public void doGoBackAction() throws IOException {

@@ -124,7 +124,7 @@
                                  <bottom>
                                     <HBox BorderPane.alignment="CENTER">
                                        <children>
-                                          <Label contentDisplay="BOTTOM" styleClass="guest" text="Elie Fidèle Rijaniaina Elie Fidèle">
+                                          <Label fx:id="connectedUsername" contentDisplay="BOTTOM" styleClass="guest" text="Elie Fidèle Rijaniaina Elie Fidèle">
                                              <font>
                                                 <Font name="System Bold" size="20.0" />
                                              </font>
