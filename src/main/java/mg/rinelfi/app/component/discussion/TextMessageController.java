@@ -1,4 +1,4 @@
-package mg.rinelfi.app.component.message;
+package mg.rinelfi.app.component.discussion;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +30,7 @@ public abstract class TextMessageController {
     
     protected void addReaction(HBox reactionContainer, String image) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/component/message/MessageReactionView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/component/discussion/MessageReactionView.fxml"));
             AnchorPane pane = loader.load();
             MessageReactionController controller = loader.getController();
             controller.setReaction(image);

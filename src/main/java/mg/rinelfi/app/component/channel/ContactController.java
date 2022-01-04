@@ -1,4 +1,4 @@
-package mg.rinelfi.app.component.discussionthread;
+package mg.rinelfi.app.component.channel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

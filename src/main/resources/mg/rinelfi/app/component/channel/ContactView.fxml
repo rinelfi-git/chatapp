@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane onMouseClicked="#doOpenDiscussionAction" styleClass="discussion" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.component.discussionthread.ContactController">
+<BorderPane onMouseClicked="#doOpenDiscussionAction" styleClass="discussion" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.component.channel.ContactController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -17,7 +17,7 @@
       <URL value="@../../../css/roboto.css" />
       <URL value="@../../../css/variables.css" />
       <URL value="@../../../css/main.css" />
-      <URL value="@../../../css/discussion-thread.css" />
+      <URL value="@../../../css/channel.css" />
    </stylesheets>
    <center>
       <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="321.0" spacing="10.0" BorderPane.alignment="CENTER">

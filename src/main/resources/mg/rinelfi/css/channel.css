@@ -59,3 +59,9 @@
 	-fx-cursor: hand;
 	-fx-background-color: rgba(0, 0, 0, .1);
 }
+
+#newMessageSearchPan {
+	-fx-pref-height: 200;
+	-fx-max-width: 400;
+	-fx-max-height: 300;
+}

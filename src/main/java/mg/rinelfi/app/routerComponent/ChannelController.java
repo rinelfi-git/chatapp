@@ -1,4 +1,4 @@
-package mg.rinelfi.app.container;
+package mg.rinelfi.app.routerComponent;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -13,10 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import mg.rinelfi.Launcher;
-import mg.rinelfi.app.component.discussionthread.ContactController;
+import mg.rinelfi.app.component.channel.ContactController;
 import mg.rinelfi.beans.Discussion;
 import mg.rinelfi.beans.User;
 import mg.rinelfi.jiosocket.SocketEvents;
@@ -29,13 +30,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DiscussionThreadController extends Controller implements Initializable {
+public class ChannelController extends Controller implements Initializable {
     @FXML
     private AnchorPane contactOption, sessionOption;
     @FXML
     private VBox mainSession;
     @FXML
     private VBox discussionList;
+    @FXML
+    private BorderPane newChannelPane;
     private ObservableList<Node> contactNodes;
     private List<ContactController> contactControllers;
     
@@ -56,6 +59,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         mainSession.toFront();
         sessionOption.toBack();
         contactOption.toBack();
+        newChannelPane.toBack();
     }
     
     @FXML
@@ -63,6 +67,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         mainSession.toBack();
         sessionOption.toFront();
         contactOption.toBack();
+        newChannelPane.toBack();
     }
     
     @FXML
@@ -70,6 +75,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         mainSession.toFront();
         sessionOption.toBack();
         contactOption.toBack();
+        newChannelPane.toBack();
     }
     
     @FXML
@@ -77,7 +83,7 @@ public class DiscussionThreadController extends Controller implements Initializa
         if (MouseButton.PRIMARY == event.getButton()) {
             this.socket.setAutoreconnection(false);
             this.getSocket().disconnect();
-            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/AuthenticationView.fxml"));
+            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/routerComponent/AuthenticationView.fxml"));
             Parent view = loader.load();
             ((Controller) loader.getController()).setStage(this.getStage());
             Scene scene = new Scene(view);
@@ -85,9 +91,17 @@ public class DiscussionThreadController extends Controller implements Initializa
         }
     }
     
+    @FXML
+    public void doNewChannel() {
+        newChannelPane.toFront();
+        mainSession.toBack();
+        sessionOption.toBack();
+        contactOption.toBack();
+    }
+    
     private void addDiscussion(String username) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/component/discussionthread/ContactView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/component/channel/ContactView.fxml"));
             this.contactNodes.add(loader.load());
             ContactController contact = loader.getController();
             this.contactControllers.add(contact);
@@ -107,18 +121,18 @@ public class DiscussionThreadController extends Controller implements Initializa
             });
             contact.onContactLeftClick(data -> {
                 try {
-                    final FXMLLoader textDiscussionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/container/TextDiscussionView.fxml"));
+                    final FXMLLoader textDiscussionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/routerComponent/DiscussionView.fxml"));
                     Parent textDiscussionView = textDiscussionLoader.load();
-                    TextDiscussionController textDiscussionController = textDiscussionLoader.getController();
-                    textDiscussionController.getGuests().add(data.getUser().getUsername());
+                    DiscussionController discussionController = textDiscussionLoader.getController();
+                    discussionController.getGuests().add(data.getUser().getUsername());
     
-                    textDiscussionController.setUser(this.getUser());
-                    textDiscussionController.setStage(this.getStage());
-                    textDiscussionController.setSocket(this.getSocket());
-                    textDiscussionController.setToken(this.getToken());
-                    textDiscussionController.getConnectedUsername().setText(data.getUser().getUsername());
-                    textDiscussionController.startSocket();
-                    textDiscussionController.sendMessageSeen();
+                    discussionController.setUser(this.getUser());
+                    discussionController.setStage(this.getStage());
+                    discussionController.setSocket(this.getSocket());
+                    discussionController.setToken(this.getToken());
+                    discussionController.getConnectedUsername().setText(data.getUser().getUsername());
+                    discussionController.startSocket();
+                    discussionController.sendMessageSeen();
                     
                     Scene scene = new Scene(textDiscussionView);
                     this.getStage().setScene(scene);

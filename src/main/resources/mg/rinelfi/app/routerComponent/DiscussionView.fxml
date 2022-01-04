@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.container.TextDiscussionController">
+<AnchorPane prefHeight="680.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.routerComponent.DiscussionController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -224,6 +224,6 @@
       <URL value="@../../css/roboto.css" />
       <URL value="@../../css/variables.css" />
       <URL value="@../../css/main.css" />
-      <URL value="@../../css/text-discussion.css" />
+      <URL value="@../../css/discussion.css" />
    </stylesheets>
 </AnchorPane>

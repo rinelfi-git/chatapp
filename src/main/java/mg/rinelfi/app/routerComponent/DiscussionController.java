@@ -1,4 +1,4 @@
-package mg.rinelfi.app.container;
+package mg.rinelfi.app.routerComponent;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,9 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import mg.rinelfi.Launcher;
-import mg.rinelfi.app.component.message.TextMessageController;
-import mg.rinelfi.app.component.message.TextMessageGuestController;
-import mg.rinelfi.app.component.message.TextMessageMeController;
+import mg.rinelfi.app.component.discussion.TextMessageController;
+import mg.rinelfi.app.component.discussion.TextMessageGuestController;
+import mg.rinelfi.app.component.discussion.TextMessageMeController;
 import mg.rinelfi.jiosocket.SocketEvents;
 import org.json.JSONObject;
 
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TextDiscussionController extends Controller implements Initializable {
+public class DiscussionController extends Controller implements Initializable {
     @FXML
     private BorderPane reactLayer;
     @FXML
@@ -49,9 +49,9 @@ public class TextDiscussionController extends Controller implements Initializabl
     
     @FXML
     public void doGoBackAction() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/DiscussionThreadView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/routerComponent/ChannelView.fxml"));
         Parent view = loader.load();
-        DiscussionThreadController controller = loader.getController();
+        ChannelController controller = loader.getController();
         
         controller.setUser(this.getUser());
         controller.setStage(this.getStage());
@@ -67,8 +67,8 @@ public class TextDiscussionController extends Controller implements Initializabl
     @FXML
     public void doSendMessage() throws IOException {
         final String message = this.input.getText();
-        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/message/TextMessageMeView.fxml"));
-        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/message/ReactionView.fxml"));
+        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/discussion/TextMessageMeView.fxml"));
+        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/discussion/ReactionView.fxml"));
         VBox discussion = discussionLoader.load();
         HBox reactionPanel = reactionLoader.load();
         TextMessageMeController meController = discussionLoader.getController();
@@ -93,8 +93,8 @@ public class TextDiscussionController extends Controller implements Initializabl
     }
     
     private void doReceiveMessage(final String message) {
-        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/message/TextMessageGuestView.fxml"));
-        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/message/ReactionView.fxml"));
+        FXMLLoader discussionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/discussion/TextMessageGuestView.fxml"));
+        FXMLLoader reactionLoader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/component/discussion/ReactionView.fxml"));
         try {
             VBox discussion = discussionLoader.load();
             HBox reactionPanel = reactionLoader.load();

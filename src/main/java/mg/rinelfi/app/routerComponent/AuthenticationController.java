@@ -1,6 +1,5 @@
-package mg.rinelfi.app.container;
+package mg.rinelfi.app.routerComponent;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,15 +28,15 @@ public class AuthenticationController extends Controller implements Initializabl
     @FXML
     void doConnection() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/container/DiscussionThreadView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/routerComponent/ChannelView.fxml"));
             Parent discussionThreadView = loader.load();
-            DiscussionThreadController discussionThreadController = loader.getController();
-            discussionThreadController.setUser(new User());
-            discussionThreadController.getUser().setUsername(username.getText());
-            discussionThreadController.setStage(this.getStage());
-            discussionThreadController.setSocket(this.getSocket());
-            discussionThreadController.setToken(this.getToken());
-            discussionThreadController.startSocket();
+            ChannelController channelController = loader.getController();
+            channelController.setUser(new User());
+            channelController.getUser().setUsername(username.getText());
+            channelController.setStage(this.getStage());
+            channelController.setSocket(this.getSocket());
+            channelController.setToken(this.getToken());
+            channelController.startSocket();
             
             Scene scene = new Scene(discussionThreadView);
             this.getStage().setScene(scene);
@@ -47,7 +46,7 @@ public class AuthenticationController extends Controller implements Initializabl
     
     @FXML
     public void openRegister() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/container/RegistrationView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mg/rinelfi/app/routerComponent/RegistrationView.fxml"));
         Parent view = loader.load();
         ((Controller) loader.getController()).setStage(this.getStage());
         Scene scene = new Scene(view);

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseEntered="#doMouseEntered" onMouseExited="#doMouseExited" styleClass="discussion" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.component.message.TextMessageMeController">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseEntered="#doMouseEntered" onMouseExited="#doMouseExited" styleClass="discussion" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.rinelfi.app.component.discussion.TextMessageMeController">
    <children>
       <Label styleClass="date" text="10 Jan 2021 - 03:45" />
       <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="350.0" spacing="10.0" styleClass="me-thread" VBox.vgrow="ALWAYS">
@@ -69,6 +69,6 @@
       <URL value="@../../../css/roboto.css" />
       <URL value="@../../../css/variables.css" />
       <URL value="@../../../css/main.css" />
-      <URL value="@../../../css/text-discussion.css" />
+      <URL value="@../../../css/discussion.css" />
    </stylesheets>
 </VBox>

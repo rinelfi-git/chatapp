@@ -1,4 +1,4 @@
-package mg.rinelfi.app.container;
+package mg.rinelfi.app.routerComponent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +33,7 @@ public class RegistrationController extends Controller{
     
     @FXML
     void doAuthentication() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/container/AuthenticationView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("/mg/rinelfi/app/routerComponent/AuthenticationView.fxml"));
         Parent view = loader.load();
         ((Controller) loader.getController()).setStage(this.getStage());
         Scene scene = new Scene(view);

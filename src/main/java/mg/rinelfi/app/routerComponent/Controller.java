@@ -1,4 +1,4 @@
-package mg.rinelfi.app.container;
+package mg.rinelfi.app.routerComponent;
 
 import javafx.stage.Stage;
 import mg.rinelfi.beans.User;
