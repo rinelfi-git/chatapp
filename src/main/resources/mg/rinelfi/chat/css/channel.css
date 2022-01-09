@@ -1,0 +1,72 @@
+.option-btn:hover {
+	-fx-background-color: rgba(0, 0, 0, .1);
+}
+
+.search-bar-container {
+	-fx-padding: 10px;
+}
+
+.search-bar {
+	-fx-font-family: Roboto;
+	-fx-font-size: 1.4em;
+	-fx-text-fill: rgba(0, 0, 0, .75);
+	-fx-border-radius: 30px;
+	-fx-background-radius: 30px;
+	-fx-padding: 10px 10px 10px 40px;
+	-fx-focus-color: rgba(0, 0, 0, .2);
+	-fx-faint-focus-color: transparent;
+	-fx-text-box-border: rgba(0, 0, 0, .2);
+	-fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+	-fx-background-image: url("../img/search_30px.png");
+	-fx-background-position: 8px 8px;
+	-fx-background-repeat: no-repeat;
+}
+
+.discussion {
+	-fx-background-radius: 10px;
+	-fx-border-radius: 10px;
+}
+
+.discussion:hover {
+	-fx-background-color: rgba(0, 0, 0, .1);
+	-fx-cursor: hand;
+}
+
+.discussion .username {
+	-fx-font-family: Roboto;
+	-fx-font-size: 13pt;
+	-fx-font-weight: bold;
+}
+
+.discussion .message {
+	-fx-font-family: Roboto;
+	-fx-font-size: 1.4em;
+	-fx-font-weight: normal;
+}
+
+.discussion .message.not-read {
+	-fx-font-weight: bold;
+}
+
+/* options */
+.option .option-element {
+	-fx-font-family: Roboto;
+	-fx-font-size: 1.2em;
+	-fx-font-weight: bold;
+}
+
+.option .option-popup-element {
+	-fx-border-radius: 5px;
+	-fx-background-radius: 5px;
+}
+
+.option .option-popup-element:hover {
+	-fx-cursor: hand;
+	-fx-background-color: rgba(0, 0, 0, .1);
+}
+
+#newMessageSearchPan {
+	-fx-pref-height: 200;
+	-fx-max-width: 400;
+	-fx-max-height: 300;
+}
