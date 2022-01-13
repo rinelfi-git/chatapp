@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import mg.rinelfi.Launcher;
 import mg.rinelfi.chat.app.component.channel.ContactController;
-import mg.rinelfi.chat.beans.Discussion;
 import mg.rinelfi.chat.beans.User;
 import mg.rinelfi.jiosocket.SocketEvents;
 import org.json.JSONArray;
@@ -28,8 +27,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import mg.rinelfi.console.Console;
 import mg.rinelfi.factory.RJTPRequest;
 import mg.rinelfi.factory.SocketFactory;
@@ -149,13 +148,13 @@ public class ChannelController extends Controller implements Initializable {
             this.channelControllers.add(contact);
 
             contact.getTitle().setText(title);
-            contact.getLastMessage().setText("");
             contact.getMembers().addAll(members);
             TokenManager.getInstance().getTokens().forEach((tokenOwner, token) -> {
                 if (tokenOwner.equals(contact.getTitle().getText())) {
                     contact.getTokens().put(tokenOwner, token);
                 }
             });
+            contact.getLastMessage().setText(contact.getTokens().size() > 0 ? "Online" : "Offline");
 
             contact.setId(id);
             contact.onContactRightClick(observation -> {
@@ -164,7 +163,7 @@ public class ChannelController extends Controller implements Initializable {
                 contactOption.toFront();
             });
             contact.onContactLeftClick((scopedId, channelName, tokens) -> {
-                    System.out.println("click");
+                System.out.println("click");
                 try {
                     final FXMLLoader textDiscussionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/chat/app/routerComponent/DiscussionView.fxml"));
                     Parent textDiscussionView = textDiscussionLoader.load();
@@ -212,7 +211,7 @@ public class ChannelController extends Controller implements Initializable {
             for (ContactController contactController : this.channelControllers) {
                 System.out.println("username : " + contactController.getTitle());
                 if (contactController.getTitle().getText().equals(username)) {
-                    Platform.runLater(() -> contactController.getLastMessage().setText("connected"));
+                    Platform.runLater(() -> contactController.getLastMessage().setText("Online"));
                     contactController.getTokens().put(username, token);
                     TokenManager.getInstance().getTokens().put(username, token);
 
@@ -232,7 +231,7 @@ public class ChannelController extends Controller implements Initializable {
             for (ContactController contactController : this.channelControllers) {
                 Console.log(getClass(), "loop on username : " + contactController.getTitle().getText() + " && " + username);
                 if (contactController.getTitle().getText().equals(username)) {
-                    Platform.runLater(() -> contactController.getLastMessage().setText("connected"));
+                    Platform.runLater(() -> contactController.getLastMessage().setText("Online"));
                     contactController.getTokens().put(username, token);
                 }
             }
@@ -240,8 +239,14 @@ public class ChannelController extends Controller implements Initializable {
             JSONObject request = new JSONObject(data);
             String token = request.getString("token");
             for (ContactController contactController : this.channelControllers) {
-                if (contactController.getTokens().containsValue(token))
-                    contactController.getTokens().remove(token);
+                Set<String> keys = contactController.getTokens().keySet();
+                for (String key : keys) {
+                    if (contactController.getTokens().get(key).equals(token)){
+                        contactController.getTokens().remove(key);
+                        TokenManager.getInstance().getTokens().remove(key);
+                        if(contactController.getTokens().size() <= 0) Platform.runLater(() -> contactController.getLastMessage().setText("Offline"));
+                    }
+                }
             }
         }).on("message", data -> {
             JSONObject request = new JSONObject(data);
