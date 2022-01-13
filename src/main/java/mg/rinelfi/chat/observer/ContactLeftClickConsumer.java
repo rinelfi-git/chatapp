@@ -1,7 +1,7 @@
 package mg.rinelfi.chat.observer;
 
-import java.util.List;
+import java.util.Map;
 
 public interface ContactLeftClickConsumer {
-    void consumeContactLeftClick(String username, List<String> tokens);
+    void consumeContactLeftClick(long id, String username,Map<String, String> tokens);
 }

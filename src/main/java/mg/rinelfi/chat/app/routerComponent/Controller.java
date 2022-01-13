@@ -1,5 +1,6 @@
 package mg.rinelfi.chat.app.routerComponent;
 
+import java.util.Map;
 import javafx.stage.Stage;
 import mg.rinelfi.chat.beans.User;
 import mg.rinelfi.factory.SocketFactory;

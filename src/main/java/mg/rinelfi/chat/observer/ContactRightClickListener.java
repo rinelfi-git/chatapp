@@ -4,5 +4,5 @@ import mg.rinelfi.chat.beans.Discussion;
 
 public interface ContactRightClickListener {
     void onContactRightClick(ContactRightClickConsumer consumer);
-    void triggerContactRightClick(Discussion data);
+    void triggerContactRightClick(long channel);
 }

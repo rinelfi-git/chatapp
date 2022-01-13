@@ -3,8 +3,12 @@ package mg.rinelfi.chat.app.routerComponent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.JSONObject;
 
@@ -15,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -24,8 +29,10 @@ import javafx.stage.FileChooser;
 import mg.rinelfi.chat.app.component.discussion.TextMessageController;
 import mg.rinelfi.chat.app.component.discussion.TextMessageGuestController;
 import mg.rinelfi.chat.app.component.discussion.TextMessageMeController;
+import mg.rinelfi.factory.RJTPRequest;
 import mg.rinelfi.factory.SocketFactory;
 import mg.rinelfi.jiosocket.SocketEvents;
+import org.json.JSONArray;
 
 public class DiscussionController extends Controller implements Initializable {
 
@@ -36,23 +43,58 @@ public class DiscussionController extends Controller implements Initializable {
     @FXML
     private TextField input;
     @FXML
-    private Label typingIndicator, connectedUsername;
+    private Label typingIndicator, channelName;
+    @FXML
+    private ScrollPane scroller;
     private List<TextMessageController> textMessageControllers;
-    private List<String> tokens;
+    private Map<String, String> tokens;
     private boolean isTyping;
     private int typingTimeout;
     private Thread typingThread;
+    private long id;
 
-    public List<String> getTokens() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        /**
+         * Socket initiation
+         */
+        this.socketFactory = SocketFactory.getInstance();
+        this.setSocket(this.socketFactory.getConnection());
+
+        this.textMessageControllers = new ArrayList<>();
+        this.isTyping = false;
+
+        this.discussionThread.heightProperty().addListener((observable, oldValue, newValue) -> {
+            this.scroller.setVvalue((double) newValue);
+        });
+        
+        
+    }
+
+    public void setId(long id) {
+        this.id = id;
+        RJTPRequest.getInstance().openConnection().setData(new JSONObject().put("channel", this.id)).post("message list", response -> {
+            JSONArray messages = response.getJSONArray("messages");
+            for (Object message : messages) {
+                JSONObject json = (JSONObject) message;
+                if (json.getString("user").equals(this.user.getUsername()))
+                    Platform.runLater(() -> this.appendMessageMe(json.getString("content")));
+                else
+                    Platform.runLater(() -> this.doReceiveMessage(json.getString("content")));
+            }
+        });
+    }
+
+    public Map<String, String> getTokens() {
         return tokens;
     }
 
-    public void setTokens(List<String> tokens) {
+    public void setTokens(Map<String, String> tokens) {
         this.tokens = tokens;
     }
 
-    public Label getConnectedUsername() {
-        return this.connectedUsername;
+    public Label getChannelNameLabel() {
+        return this.channelName;
     }
 
     @FXML
@@ -62,48 +104,40 @@ public class DiscussionController extends Controller implements Initializable {
         ChannelController controller = loader.getController();
 
         controller.setUser(super.getUser());
-        controller.setStage(this.getStage());
-        controller.setSocket(this.getSocket());
         controller.setToken(this.getToken());
+        controller.setStage(this.getStage());
         controller.startSocket();
-        controller.getSocket().emit(SocketEvents.TOKEN_CONNECT, "");
 
         Scene scene = new Scene(view);
         this.getStage().setScene(scene);
     }
 
     @FXML
-    public void doSendMessage() throws IOException {
+    public void doSendMessage() {
         final String message = this.input.getText();
-        FXMLLoader discussionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/chat/app/component/discussion/TextMessageMeView.fxml"));
-        FXMLLoader reactionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/chat/app/component/discussion/ReactionView.fxml"));
-        VBox discussion = discussionLoader.load();
-        HBox reactionPanel = reactionLoader.load();
-        TextMessageMeController meController = discussionLoader.getController();
-        meController.setMessage(message);
-        meController.setReactionController(reactionLoader.getController());
-        meController.setReactionPanel(reactionPanel);
-        meController.onReactionRequest(reaction -> {
-            meController.getReactionController().setReaction(reaction);
-            meController.getReactionController().loadReaction();
-            reactLayer.setCenter(reactionPanel);
-            reactLayer.toFront();
-        });
-        this.textMessageControllers.add(meController);
-        this.input.setText("");
-        this.discussionThread.getChildren().add(discussion);
+        this.appendMessageMe(message);
 
         // Sending message
         this.isTyping = false;
         this.typingTimeout = 0;
         new Thread(() -> {
-            System.out.println("destinations : " + this.tokens.size());
-            this.tokens.forEach(token -> {
+            this.tokens.forEach((username, token) -> {
                 JSONObject json = new JSONObject();
-                json.put("sender", getToken()).put("target", token).put("message", message);
-                this.socket.emit("message", json.toString()).emit("typing off", json.remove("message").toString());
+                json.put("sender", getToken()).put("username", this.user.getUsername()).put("target", token).put("message", message);
+                this.socket.emit("message", json.toString());
+                json.remove("message");
+                this.socket.emit("typing off", json.toString());
             });
         }).start();
+
+        JSONObject output = new JSONObject();
+        output.put("username", this.user.getUsername());
+        output.put("channel", this.id);
+        output.put("message", message);
+
+        RJTPRequest.getInstance().openConnection().setData(output).post("text message", response -> {
+            System.out.println(response);
+        });
     }
 
     private void doReceiveMessage(final String message) {
@@ -128,24 +162,19 @@ public class DiscussionController extends Controller implements Initializable {
             this.sendMessageSeen();
             this.cleanMessageStatus();
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     @FXML
     public void doKeyPressed(KeyEvent event) {
         if (event.getCode().getName().equalsIgnoreCase("enter")) {
-            try {
-                this.doSendMessage();
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
+            this.doSendMessage();
         } else {
             if (!this.isTyping) {
                 this.isTyping = true;
-                this.tokens.forEach(token -> {
+                this.tokens.forEach((username, token) -> {
                     JSONObject json = new JSONObject();
-                    json.put("target", token).put("sender", this.getToken());
+                    json.put("target", token).put("username", this.user.getUsername()).put("sender", this.getToken());
                     this.socket.emit("typing on", json.toString());
                 });
             }
@@ -172,43 +201,36 @@ public class DiscussionController extends Controller implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        /**
-         * Socket initiation
-         */
-        this.socketFactory = SocketFactory.getInstance();
-        this.setSocket(this.socketFactory.getConnection());
-
-        this.textMessageControllers = new ArrayList<>();
-        this.tokens = new ArrayList<>();
-        this.isTyping = false;
-    }
-
-    @Override
     public void startSocket() {
         /**
          * Initiation of socket use
          */
         this.getSocket().on(SocketEvents.CONNECT, data -> {
-            this.setToken(data.getString("identifier"));
+            JSONObject request = new JSONObject(data);
+            this.setToken(request.getString("identifier"));
         }).on("message", data -> {
-            String sender = data.getString("sender");
-            final String message = data.getString("message");
-            if (this.tokens.contains(sender)) {
+            JSONObject request = new JSONObject(data);
+            String sender = request.getString("sender");
+            final String message = request.getString("message");
+            if (this.tokens.containsValue(sender)) {
+                System.out.println("received message");
                 Platform.runLater(() -> doReceiveMessage(message));
             }
         }).on("typing on", data -> {
-            String sender = data.getString("sender");
+            JSONObject request = new JSONObject(data);
+            String sender = request.getString("sender");
+            String username = request.getString("username");
             System.out.println("typing detected");
-            if (this.tokens.contains(sender)) {
+            if (this.tokens.containsValue(sender)) {
                 Platform.runLater(() -> {
-                    this.typingIndicator.setText(String.format("%s is typing", sender));
+                    this.typingIndicator.setText(String.format("%s is typing", username));
                     this.typingIndicator.setVisible(true);
                 });
             }
         }).on("typing off", data -> {
-            String sender = data.getString("sender");
-            if (this.tokens.contains(sender)) {
+            JSONObject request = new JSONObject(data);
+            String sender = request.getString("sender");
+            if (this.tokens.containsValue(sender)) {
                 Platform.runLater(() -> {
                     this.typingIndicator.setText("");
                     this.typingIndicator.setVisible(false);
@@ -232,7 +254,7 @@ public class DiscussionController extends Controller implements Initializable {
                 }
                 this.isTyping = false;
                 new Thread(() -> {
-                    this.tokens.forEach(token -> {
+                    this.tokens.forEach((username, token) -> {
                         JSONObject json = new JSONObject();
                         json.put("target", token).put("sender", getToken());
                         this.socket.emit("typing off", json.toString());
@@ -245,7 +267,7 @@ public class DiscussionController extends Controller implements Initializable {
 
     public void sendMessageSeen() {
         new Thread(() -> {
-            this.tokens.forEach(token -> {
+            this.tokens.forEach((username, token) -> {
                 JSONObject emit = new JSONObject();
                 emit.put("sender", getUser().getUsername()).put("target", token);
                 this.socket.emit("seen", emit.toString());
@@ -293,6 +315,30 @@ public class DiscussionController extends Controller implements Initializable {
             if (textMessageController instanceof TextMessageMeController) {
                 Platform.runLater(() -> ((TextMessageMeController) textMessageController).setReceived(true));
             }
+        }
+    }
+
+    private void appendMessageMe(String message) {
+        try {
+            FXMLLoader discussionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/chat/app/component/discussion/TextMessageMeView.fxml"));
+            FXMLLoader reactionLoader = new FXMLLoader(getClass().getResource("/mg/rinelfi/chat/app/component/discussion/ReactionView.fxml"));
+            VBox discussion = discussionLoader.load();
+            HBox reactionPanel = reactionLoader.load();
+            TextMessageMeController meController = discussionLoader.getController();
+            meController.setMessage(message);
+            meController.setReactionController(reactionLoader.getController());
+            meController.setReactionPanel(reactionPanel);
+            meController.onReactionRequest(reaction -> {
+                meController.getReactionController().setReaction(reaction);
+                meController.getReactionController().loadReaction();
+                reactLayer.setCenter(reactionPanel);
+                reactLayer.toFront();
+            });
+            this.textMessageControllers.add(meController);
+            this.input.setText("");
+            this.discussionThread.getChildren().add(discussion);
+        } catch (IOException ex) {
+            Logger.getLogger(DiscussionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

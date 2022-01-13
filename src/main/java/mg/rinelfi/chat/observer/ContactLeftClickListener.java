@@ -1,8 +1,8 @@
 package mg.rinelfi.chat.observer;
 
-import java.util.List;
+import java.util.Map;
 
 public interface ContactLeftClickListener {
     void onContactLeftClick(ContactLeftClickConsumer consumer);
-    void triggerContaLeftClick(String username, List<String> tokens);
+    void triggerContaLeftClick(long id, String username, Map<String, String> tokens);
 }

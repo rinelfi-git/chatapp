@@ -124,7 +124,7 @@
                                  <bottom>
                                     <HBox BorderPane.alignment="CENTER">
                                        <children>
-                                          <Label fx:id="connectedUsername" contentDisplay="BOTTOM" styleClass="guest" text="Elie Fidèle Rijaniaina Elie Fidèle">
+                                          <Label fx:id="channelName" contentDisplay="BOTTOM" styleClass="guest" text="Elie Fidèle Rijaniaina Elie Fidèle">
                                              <font>
                                                 <Font name="System Bold" size="20.0" />
                                              </font>
@@ -144,7 +144,7 @@
                         <String fx:value="header" />
                      </styleClass>
                   </BorderPane>
-                  <ScrollPane fx:id="discussionListContainer" fitToWidth="true" hbarPolicy="NEVER" prefHeight="525.0" prefWidth="347.0" styleClass="discussion-scroll-container" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="scroller" fitToWidth="true" hbarPolicy="NEVER" prefHeight="525.0" prefWidth="347.0" styleClass="discussion-scroll-container" VBox.vgrow="ALWAYS">
                      <content>
                         <VBox fx:id="discussionThread" prefWidth="438.0" spacing="5.0">
                            <padding>

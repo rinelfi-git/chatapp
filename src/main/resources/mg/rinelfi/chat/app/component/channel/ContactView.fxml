@@ -29,10 +29,10 @@
             </ImageView>
             <BorderPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <top>
-                  <Label fx:id="username" styleClass="username" text="Nicole Pearson" BorderPane.alignment="CENTER_LEFT" />
+                  <Label fx:id="title" styleClass="username" text="Nicole Pearson" BorderPane.alignment="CENTER_LEFT" />
                </top>
                <bottom>
-                  <Label fx:id="messageView" styleClass="message" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ab corrupti debitis autem nulla laudantium corporis quo exercitationem cumque quasi, mollitia fuga quas explicabo animi veniam recusandae similique laborum accusamus." BorderPane.alignment="CENTER_LEFT" />
+                  <Label fx:id="lastMessage" styleClass="message" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ab corrupti debitis autem nulla laudantium corporis quo exercitationem cumque quasi, mollitia fuga quas explicabo animi veniam recusandae similique laborum accusamus." BorderPane.alignment="CENTER_LEFT" />
                </bottom>
             </BorderPane>
          </children>

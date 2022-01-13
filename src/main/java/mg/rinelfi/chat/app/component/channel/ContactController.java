@@ -9,51 +9,56 @@ import mg.rinelfi.chat.observer.ContactLeftClickConsumer;
 import mg.rinelfi.chat.observer.ContactLeftClickListener;
 import mg.rinelfi.chat.observer.ContactRightClickConsumer;
 import mg.rinelfi.chat.observer.ContactRightClickListener;
-import mg.rinelfi.chat.beans.Discussion;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import mg.rinelfi.chat.beans.User;
 
 public class ContactController implements ContactRightClickListener, ContactLeftClickListener, Initializable {
-    private Discussion discussion;
     @FXML
-    private Label username, messageView;
+    private Label title, lastMessage;
     @FXML
     private BorderPane it;
     private ContactLeftClickConsumer leftClickConsumer;
     private ContactRightClickConsumer rightClickConsumers;
-    private List<String> tokens;
+    
+    private Map<String, String> tokens;
+    private long id;
+    private List<User> members;
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.tokens = new ArrayList<>();
+        this.tokens = new HashMap<>();
+        this.members = new ArrayList<>();
     }
     
     @FXML
     public void doOpenDiscussionAction(MouseEvent event) throws IOException {
         if (MouseButton.SECONDARY == event.getButton()) {
-            this.triggerContactRightClick(this.discussion);
+            this.triggerContactRightClick(this.id);
         } else if (MouseButton.PRIMARY == event.getButton()) {
-            this.triggerContaLeftClick(this.discussion.getUser().getUsername(), this.tokens);
+            System.out.println("contect");
+            this.triggerContaLeftClick(this.id, this.title.getText(), this.tokens);
         }
     }
-    
-    public void setDiscussion(Discussion discussion) {
-        this.discussion = discussion;
-        this.update();
-    }
-    
-    public Discussion getDiscussion() {return this.discussion;}
     
     public BorderPane getIt() {
         return it;
     }
-    
-    public Label getMessageView() {return this.messageView;}
+
+    public List<User> getMembers() {
+        return members;
+    }
     
     @Override
     public void onContactRightClick(ContactRightClickConsumer consumer) {
@@ -61,8 +66,8 @@ public class ContactController implements ContactRightClickListener, ContactLeft
     }
     
     @Override
-    public void triggerContactRightClick(Discussion data) {
-        this.rightClickConsumers.consumeContactRightClick(data);
+    public void triggerContactRightClick(long channel) {
+        this.rightClickConsumers.consumeContactRightClick(channel);
     }
     
     @Override
@@ -71,17 +76,21 @@ public class ContactController implements ContactRightClickListener, ContactLeft
     }
     
     @Override
-    public void triggerContaLeftClick(String username, List<String> tokens) {
-        this.leftClickConsumer.consumeContactLeftClick(username, tokens);
-    }
-    
-    public void update() {
-        this.username.setText(discussion.getUser().getUsername());
-        this.messageView.setText(this.discussion.getMessage());
+    public void triggerContaLeftClick(long id, String username, Map<String, String> tokens) {
+        this.leftClickConsumer.consumeContactLeftClick(id, username, tokens);
     }
 
-    public List<String> getTokens() {
+    public Map<String, String> getTokens() {
         return tokens;
     }
+
+    public Label getTitle() {
+        return title;
+    }
+
+    public Label getLastMessage() {
+        return lastMessage;
+    }
+    
     
 }

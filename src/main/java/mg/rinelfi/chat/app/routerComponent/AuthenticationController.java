@@ -2,6 +2,7 @@ package mg.rinelfi.chat.app.routerComponent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import org.json.JSONObject;
@@ -29,6 +30,12 @@ public class AuthenticationController extends Controller implements Initializabl
     @FXML
     private PasswordField password;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.socketFactory = SocketFactory.getInstance();
+        this.setSocket(this.socketFactory.getConnection());
+    }
+
     @FXML
     void doConnection() {
         JSONObject data = new JSONObject();
@@ -42,8 +49,7 @@ public class AuthenticationController extends Controller implements Initializabl
                             getClass().getResource("/mg/rinelfi/chat/app/routerComponent/ChannelView.fxml"));
                         User user = new User();
                         user.setUsername(response.getJSONObject("user").getString("username"));
-                        user.setFirstname(response.getJSONObject("user").getString("firstname"));
-                        user.setLastname(response.getJSONObject("user").getString("lastname"));
+                        user.setNickname(response.getJSONObject("user").getString("firstname") + " " + response.getJSONObject("user").getString("lastname"));
                         Parent discussionThreadView = loader.load();
                         ChannelController channelController = loader.getController();
                         channelController.setUser(user);
@@ -92,15 +98,8 @@ public class AuthenticationController extends Controller implements Initializabl
     @Override
     public void startSocket() {
         this.getSocket().on(SocketEvents.CONNECT, data -> {
-            this.setToken(data.get("identifier").toString());
-            System.out.println("connected as : " + this.token);
+            JSONObject request = new JSONObject(data);
+            this.setToken(request.get("token").toString());
         });
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        this.socketFactory = SocketFactory.getInstance();
-        this.setSocket(this.socketFactory.getConnection());
-        System.out.println("socket in autentication : " + this.socket);
     }
 }
